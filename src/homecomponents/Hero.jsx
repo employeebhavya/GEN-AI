@@ -18,7 +18,7 @@ function Hero() {
     <section className="relative w-full lg:min-h-screen overflow-hidden bg-[#351e55] pt-[64px] text-white">
       <video
         src="/hero1.mp4"
-        className="absolute top-0 left-[20%] md:left-[28%] w-full h-[60%] md:h-full object-cover"
+        className="absolute top-0 left-[20%] md:left-[28%] w-full h-[60%] md:h-full object-cover opacity-40 lg:opacity-100"
         autoPlay
         muted
         loop
