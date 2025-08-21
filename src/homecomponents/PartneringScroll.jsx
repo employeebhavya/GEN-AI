@@ -24,7 +24,7 @@ function PartneringScroll() {
         {/* Heading */}
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-700 leading-relaxed">
-            GenAI Healthcare Partnering with Leading Providers and Top EHRs
+            Trusted By Leading Companies
           </h2>
           <p className="text-sm sm:text-base text-gray-500">
             Seamlessly integrated with leading healthcare systems nationwide

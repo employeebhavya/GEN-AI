@@ -41,9 +41,9 @@ const Navigation = ({ isScrolled = false }) => {
       icon: Building2,
       hasDropdown: true,
       submenu: [
-        { name: "About Us", href: "#", icon: Info },
-        { name: "Our Values", href: "#", icon: Award },
-        { name: "Team Overview", href: "#", icon: Users2 },
+        { name: "About Us", href: "/about-us", icon: Info },
+        { name: "Our Values", href: "/our-values", icon: Award },
+        { name: "Team Overview", href: "/team-overview", icon: Users2 },
         { name: "Join Us", href: "#", icon: Briefcase },
       ],
     },

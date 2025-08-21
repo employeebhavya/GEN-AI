@@ -73,7 +73,7 @@ function Testimonial() {
       {/* Section Header - Full Width Container */}
       <div className="container mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-700 leading-relaxed">
-          What Our Healthcare Partners Say
+          What Our Valued Customers Say
         </h2>
       </div>
 

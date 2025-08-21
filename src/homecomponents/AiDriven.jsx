@@ -26,7 +26,7 @@ function AiDriven() {
     },
     {
       icon: Lightbulb,
-      title: "Continuous Innovations",
+      title: "Continuous Monitoring",
       description:
         "Stay ahead with cutting edge AI technology leading the future of healthcare.",
       color: "from-blue-400 to-indigo-500",

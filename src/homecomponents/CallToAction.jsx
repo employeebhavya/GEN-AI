@@ -36,16 +36,17 @@ function CallToAction() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
-            Ready to{" "}
+            Collaboration Leads to a{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-gray-700 to-gray-900">
-              Revolutionize
-            </span>
-            Your Practice?
+              Healthier
+            </span>{" "}
+            Tomorrow
           </h2>
 
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of healthcare professionals who trust GenAI
-            Healthcare to streamline operations and enhance patient care.
+            Join us in shaping the future of wellness. As a customer or partner,
+            you will help expand innovative health solutions and drive lasting
+            global impact
           </p>
         </div>
 

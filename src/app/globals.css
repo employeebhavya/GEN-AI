@@ -1,41 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@font-face {
-  font-family: "Cerapro";
-  src: url("../../public/fonts/Fontspring-DEMO-cerapro-light.otf")
-    format("opentype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cerapro";
-  src: url("../../public/fonts/Fontspring-DEMO-cerapro-regular.otf")
-    format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cerapro";
-  src: url("../../public/fonts/Fontspring-DEMO-cerapro-medium.otf")
-    format("opentype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cerapro";
-  src: url("../../public/fonts/Fontspring-DEMO-cerapro-bold.otf")
-    format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
-  font-family: Cerapro;
+  font-family: "Noto Sans", sans-serif;
 }
 
 @theme inline {

@@ -4,11 +4,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Download,
-  ExternalLink,
   Heart,
   Building2,
-  Lightbulb,
   Mail,
   Phone,
   MapPin,
@@ -17,25 +14,26 @@ import {
   Linkedin,
   Instagram,
   ArrowUp,
+  Newspaper,
 } from "lucide-react";
 
 function Footer() {
   const footerNavigation = {
     Company: [
-      { name: "About", href: "#about" },
-      { name: "Our Values", href: "#values" },
-      { name: "Team Overview", href: "#team" },
-      { name: "Become a Partner", href: "#partner" },
+      { name: "About", href: "/about-us" },
+      { name: "Our Values", href: "/our-values" },
+      { name: "Team Overview", href: "/team-overview" },
+      { name: "Become a Partner", href: "#" },
     ],
     NexCura: [
-      { name: "NexCura CONSUMER", href: "#consumer" },
-      { name: "NexCura EMP", href: "#emp" },
-      { name: "NexCura AGETECH", href: "#agetech" },
-      { name: "NexCura INSUR", href: "#insur" },
+      { name: "Caregiver", href: "#consumer" },
+      { name: "Individuals", href: "#emp" },
+      { name: "Employer", href: "#agetech" },
     ],
-    Solutions: [
-      { name: "How it Works ?", href: "#how-it-works" },
-      { name: "NexCura EMP Benefits", href: "#emp-benefits" },
+    "News Room": [
+      { name: "Events", href: "#how-it-works" },
+      { name: "Press Releases", href: "#emp-benefits" },
+      { name: "Contact Us", href: "#emp-benefits" },
     ],
   };
 
@@ -44,7 +42,7 @@ function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden px-4 sm:px-6 lg:px-8 pt-12 pb-6 lg:pt-16 lg:pb-12">
+    <footer className="relative overflow-hidden md:px-10 py-12">
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Base gradient */}
@@ -101,7 +99,7 @@ function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
                   <Mail className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                  <span className="text-sm">contact@nexcura.com</span>
+                  <span className="text-sm">contact@genaihealth.care</span>
                 </div>
                 <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
                   <Phone className="w-4 h-4 text-blue-300 flex-shrink-0" />
@@ -116,7 +114,12 @@ function Footer() {
 
             {/* Navigation Links */}
             {Object.entries(footerNavigation).map(([category, links]) => (
-              <div key={category} className="lg:col-span-1">
+              <div
+                key={category}
+                className={`lg:col-span-1 ${
+                  category === "Company" ? "lg:ml-10 xl:ml-20" : ""
+                }`}
+              >
                 <h3 className="text-white font-bold text-lg mb-4 sm:mb-6 flex items-center gap-2">
                   {category === "Company" && (
                     <Building2 className="w-5 h-5 text-blue-300" />
@@ -124,8 +127,8 @@ function Footer() {
                   {category === "NexCura" && (
                     <Heart className="w-5 h-5 text-purple-300" />
                   )}
-                  {category === "Solutions" && (
-                    <Lightbulb className="w-5 h-5 text-green-300" />
+                  {category === "News Room" && (
+                    <Newspaper className="w-5 h-5 text-green-300" />
                   )}
                   {category}
                 </h3>

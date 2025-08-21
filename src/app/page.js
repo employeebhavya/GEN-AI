@@ -1,9 +1,6 @@
 import AiDriven from "@/homecomponents/AiDriven";
 import CallToAction from "@/homecomponents/CallToAction";
 import Collaborate from "@/homecomponents/Collaborate";
-import ContinuousInnovations from "@/homecomponents/ContinuousInnovations";
-import DataManagement from "@/homecomponents/DataManagement";
-import HealthInsights from "@/homecomponents/HealthInsights";
 import Hero from "@/homecomponents/Hero";
 import HomeAbout from "@/homecomponents/HomeAbout";
 import HomeIconBoxex from "@/homecomponents/HomeIconBoxex";
@@ -25,9 +22,9 @@ function page() {
       <AiDriven />
       <WorldClassTreatment />
       <Stats />
-      <CallToAction />
       <Nexcura />
       <Testimonial />
+      <CallToAction />
     </div>
   );
 }

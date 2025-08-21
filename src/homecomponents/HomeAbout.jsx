@@ -2,7 +2,7 @@ import React from "react";
 
 function HomeAbout() {
   return (
-    <section className="relative bg-white py-18 overflow-hidden lg:bg-[url('/about-bg.png')] bg-no-repeat bg-top bg-cover">
+    <section className="relative bg-white py-18 overflow-hidden lg:bg-[url('/about-bg.webp')] bg-no-repeat bg-top bg-cover">
       {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -18,7 +18,7 @@ function HomeAbout() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
               <span className="block">Redefining Personal</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-gray-800">
-                Health with Generative AI
+                Health with AI
               </span>
             </h2>
 

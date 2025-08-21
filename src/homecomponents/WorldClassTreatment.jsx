@@ -6,39 +6,45 @@ function WorldClassTreatment() {
   const treatments = [
     // Row 1 - Left to Right
     [
-      "Adenomyosis",
-      "Endometriosis",
-      "Early Menopause (40-45 years old)",
-      "Fibroids",
-      "Hyperandrogen",
-      "Thyroid Issues",
-      "PCOS Management",
+      "Preventive care",
+      "Early detection",
+      "Body composition",
+      "Vital signs",
+      "Physical Activity",
+      "Predictive Risk Analysis",
+      "Wellness Evaluation",
     ],
     // Row 2 - Right to Left
     [
-      "Iron Deficiency Anaemia",
-      "Hypothyroidism (subclinical/overt)",
-      "Hypothalamic Amenorrhea",
-      "Pelvic Pain",
-      "Fertility Issues",
-      "Hormonal Imbalance",
+      "Health Counselling",
+      "Demographic factors",
+      "Genetic factors",
+      "Environmental factors",
+      "Menopause",
+      "Nutrition",
+      "Sleep",
     ],
     // Row 3 - Left to Right
     [
-      "Low/diminished Egg Reserve",
-      "Menopause (over 45 year old)",
-      "Pelvic Inflammatory Disease",
-      "Perimenopause",
-      "Ovarian Cysts",
-      "Reproductive Health",
+      "Stress",
+      "Lifestyle modifications",
+      "Geographic settings",
+      "Diagnostic Tests",
+      "Medication Adherence",
+      "Continuous monitoring",
+      "Longevity",
     ],
     // Row 4 - Right to Left
     [
-      "Uterine (Endometrial) Polyps",
-      "Polycystic Ovary Syndrome (PCOS)",
-      "Premature Ovarian Failure",
-      "Menstrual Disorders",
-      "Women's Wellness",
+      "Cardiac Health",
+      "Respiratory Health",
+      "Bone Health",
+      "Mental Health",
+      "Hormones",
+      "Gut Health",
+      "Reproductive Health",
+      "Autoimmune Diseases",
+      "Hydration",
     ],
   ];
 
@@ -101,12 +107,9 @@ function WorldClassTreatment() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            World class treatment,
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            AI Driven Evaluation and Understanding
           </h2>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-white italic">
-            without the wait
-          </p>
         </div>
 
         {/* Treatment Rows */}

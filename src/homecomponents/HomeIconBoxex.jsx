@@ -1,39 +1,40 @@
 import React from "react";
-import { Dumbbell, Pill, Leaf, Zap, Moon } from "lucide-react";
+import { Heart, AlertTriangle, Activity, Users, UserCheck } from "lucide-react";
 
 function HomeIconBoxex() {
   const features = [
     {
-      icon: Dumbbell,
-      title: "Slim and Strong",
+      icon: Heart,
+      title: "Healthy Aging",
       color: "from-blue-500 to-purple-600",
       delay: "0ms",
     },
     {
-      icon: Pill,
-      title: "Less Medicine",
+      icon: AlertTriangle,
+      title: "Proactive Health Alerts",
       color: "from-purple-500 to-pink-600",
       delay: "100ms",
     },
     {
-      icon: Leaf,
-      title: "Heal Naturally",
+      icon: Activity,
+      title: "Active Lifestyle",
       color: "from-green-500 to-blue-600",
       delay: "200ms",
     },
     {
-      icon: Zap,
-      title: "Stay Active",
+      icon: Users,
+      title: "Healthier Body",
       color: "from-orange-500 to-red-600",
       delay: "300ms",
     },
     {
-      icon: Moon,
-      title: "Restful Nights",
+      icon: UserCheck,
+      title: "Patient Empowerment",
       color: "from-indigo-500 to-purple-600",
       delay: "400ms",
     },
   ];
+
   return (
     <section className="relative pt-16">
       <div className="container">

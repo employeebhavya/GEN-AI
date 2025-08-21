@@ -1,5 +1,7 @@
 import React from "react";
 import { ArrowRight, Heart, Shield, Zap } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 function Nexcura() {
   return (
@@ -37,7 +39,7 @@ function Nexcura() {
                 </div>
 
                 {/* Main Heading */}
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-6 leading-tight">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-gray-800 to-gray-900">
                     Nexcura:
                   </span>
@@ -56,41 +58,58 @@ function Nexcura() {
                 </p>
 
                 {/* Feature Icons */}
-                <div className="flex items-center justify-center lg:justify-start gap-6 mb-8">
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg mb-2 mx-auto">
-                      <Zap className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-sm text-gray-600 font-medium">
-                      Smart AI
-                    </span>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <Link
+                    href={"#"}
+                    className="relative z-0 rounded-xl overflow-hidden group"
+                  >
+                    <Image
+                      src="/Caregivers.webp"
+                      alt="Smart AI"
+                      width={400}
+                      height={480}
+                      className="w-full h-full md:h-[300px] object-cover group-hover:scale-125 transition-transform duration-1000"
+                    />
+                    <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
+                      Caregivers
+                    </h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
+                  </Link>
 
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg mb-2 mx-auto">
-                      <Shield className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-sm text-gray-600 font-medium">
-                      Secure
-                    </span>
-                  </div>
+                  <Link
+                    href={"#"}
+                    className="relative z-0 rounded-xl overflow-hidden group"
+                  >
+                    <Image
+                      src="/Individuals.webp"
+                      alt="Secure"
+                      width={400}
+                      height={480}
+                      className="w-full h-full md:h-[300px] object-cover group-hover:scale-125 transition-transform duration-1000"
+                    />
+                    <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
+                      Individuals
+                    </h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
+                  </Link>
 
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg mb-2 mx-auto">
-                      <Heart className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-sm text-gray-600 font-medium">
-                      Personal
-                    </span>
-                  </div>
+                  <Link
+                    href={"#"}
+                    className="relative z-0 rounded-xl overflow-hidden group"
+                  >
+                    <Image
+                      src="/Employers.webp"
+                      alt="Personal"
+                      width={400}
+                      height={480}
+                      className="w-full h-full md:h-[300px] object-cover group-hover:scale-125 transition-transform duration-1000"
+                    />
+                    <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
+                      Employers
+                    </h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
+                  </Link>
                 </div>
-
-                {/* Read More Button */}
-                <button className="group cursor-pointer inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-gray-700 hover:from-blue-700 hover:to-gray-800 text-white font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-                  <span>Read More</span>
-                  <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
               </div>
 
               {/* Right Image */}
