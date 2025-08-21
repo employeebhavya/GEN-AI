@@ -71,6 +71,7 @@ const Navigation = ({ isScrolled = false }) => {
   const handleMouseEnter = (index) => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
     }
     setActiveDropdown(index);
   };
@@ -92,15 +93,18 @@ const Navigation = ({ isScrolled = false }) => {
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center space-x-8">
         {menuItems.map((item, index) => (
-          <div key={index} className="relative group">
+          <div
+            key={index}
+            className="relative group"
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
               className={`flex items-center space-x-1 cursor-pointer transition-colors duration-200 py-2 ${
                 isScrolled
                   ? "text-gray-700 hover:text-gray-900"
                   : "text-white hover:text-blue-200"
               }`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
             >
               <item.icon className="w-4 h-4" />
               <span className="font-medium">{item.name}</span>
@@ -112,13 +116,11 @@ const Navigation = ({ isScrolled = false }) => {
             {/* Desktop Dropdown */}
             {item.hasDropdown && activeDropdown === index && (
               <div
-                className={`absolute top-full left-0 mt-2 w-56 backdrop-blur-xl border rounded-lg shadow-xl z-50 ${
+                className={`absolute top-full left-0 mt-1 w-56 backdrop-blur-xl border rounded-lg shadow-xl z-50 ${
                   isScrolled
                     ? "bg-white/80 border-gray-200/50"
                     : "bg-white/10 border-white/20"
                 }`}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
               >
                 <div className="py-2">
                   {item.submenu.map((subItem, subIndex) => (

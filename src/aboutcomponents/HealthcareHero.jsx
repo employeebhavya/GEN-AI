@@ -83,13 +83,12 @@ const HealthcareHero = ({ title, description, image, height, imgheight }) => {
     <div
       className={`relative w-full min-h-[${height}] flex items-center justify-center overflow-hidden pt-[64px] z-0`}
       style={{
-        background: "linear-gradient(90deg, #6A4A9A 0%, #A68CFF 100%)",
+        background:
+          "linear-gradient(90deg, #2E1B47 0%, #6A4A9A 50%, #A68CFF 100%)",
       }}
     >
       {/* Animated background canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-
-      <div className="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 absolute inset-0 opacity-30 z-[1]"></div>
 
       <div className="relative z-10 container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-12 lg:pt-0">
@@ -99,7 +98,7 @@ const HealthcareHero = ({ title, description, image, height, imgheight }) => {
               {title}
             </h1>
 
-            <p className="text-sm xl:text-lg font-semibold text-gray-100 leading-relaxed">
+            <p className="text-sm xl:text-lg font-semibold text-white leading-relaxed">
               {description}
             </p>
 
