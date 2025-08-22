@@ -44,8 +44,8 @@ const Collaborate = () => {
         {/* Main Heading */}
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-            Personalized care is at
-            <span className="text-gray-700">the heart of</span>
+            Personalized care is at{" "}
+            <span className="text-gray-700">the heart of</span>{" "}
             <span className="text-gray-600">everything we do</span>
           </h1>
         </div>

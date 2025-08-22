@@ -1,35 +1,35 @@
 import React from "react";
-import { Heart, AlertTriangle, Activity, Users, UserCheck } from "lucide-react";
+import { Brain, Scan, Monitor, Target, BarChart3 } from "lucide-react";
 
 function HomeIconBoxex() {
   const features = [
     {
-      icon: Heart,
-      title: "Healthy Aging",
+      icon: Brain,
+      title: "Predictive AI",
       color: "from-blue-500 to-purple-600",
       delay: "0ms",
     },
     {
-      icon: AlertTriangle,
-      title: "Proactive Health Alerts",
+      icon: Scan,
+      title: "Full Body Analysis",
       color: "from-purple-500 to-pink-600",
       delay: "100ms",
     },
     {
-      icon: Activity,
-      title: "Active Lifestyle",
+      icon: Monitor,
+      title: "Real Time Monitoring",
       color: "from-green-500 to-blue-600",
       delay: "200ms",
     },
     {
-      icon: Users,
-      title: "Healthier Body",
+      icon: Target,
+      title: "Lifestyle Management",
       color: "from-orange-500 to-red-600",
       delay: "300ms",
     },
     {
-      icon: UserCheck,
-      title: "Patient Empowerment",
+      icon: BarChart3,
+      title: "Wellness Dashboard",
       color: "from-indigo-500 to-purple-600",
       delay: "400ms",
     },
@@ -68,7 +68,7 @@ function HomeIconBoxex() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-xl font-bold text-gray-800">
+                        <h3 className="text-lg font-medium text-gray-800">
                           {feature.title}
                         </h3>
                       </div>
