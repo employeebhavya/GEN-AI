@@ -1,9 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const HealthcareHero = ({ title, description, image, height, imgheight }) => {
+const HealthcareHero = ({
+  title,
+  description,
+  image,
+  height,
+  imgheight,
+  imgwidth = "h-auto",
+  isVisible = "block",
+  innerPadding = "lg:pt-0 pb-0",
+}) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -91,7 +101,9 @@ const HealthcareHero = ({ title, description, image, height, imgheight }) => {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
       <div className="relative z-10 container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-12 lg:pt-0">
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-12 ${innerPadding}`}
+        >
           {/* Left Content */}
           <div className="space-y-4">
             <h1 className="text-3xl xl:text-4xl font-bold text-white leading-tight">
@@ -102,17 +114,20 @@ const HealthcareHero = ({ title, description, image, height, imgheight }) => {
               {description}
             </p>
 
-            <button className="bg-primary hover:bg-secondary text-white cursor-pointer text-base px-8 py-2 transition-all duration-300 transform hover:scale-105">
+            <Link
+              href="/contact-us"
+              className={`${isVisible} bg-primary hover:bg-secondary text-white cursor-pointer text-base px-8 py-2 transition-all duration-300 transform hover:scale-105 w-fit`}
+            >
               Get a Demo
-            </button>
+            </Link>
           </div>
-          <div className="relative w-full flex items-end">
+          <div className="relative w-full flex items-end lg:justify-end">
             <Image
               src={image}
               alt="Healthcare Hero"
               width={500}
               height={500}
-              className={`w-full h-full ${imgheight} object-cover`}
+              className={`w-full ${imgwidth} h-full ${imgheight} object-cover`}
             />
           </div>
         </div>

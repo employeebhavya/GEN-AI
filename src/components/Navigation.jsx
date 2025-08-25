@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ChevronDown,
@@ -22,6 +22,12 @@ const Navigation = ({ isScrolled = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure consistent client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const menuItems = [
     {
@@ -30,9 +36,9 @@ const Navigation = ({ isScrolled = false }) => {
       icon: Heart,
       hasDropdown: true,
       submenu: [
-        { name: "Employers", href: "#", icon: Building2 },
-        { name: "Caregivers", href: "#", icon: Users },
-        { name: "Individuals", href: "#", icon: User },
+        { name: "Employers", href: "/employers", icon: Building2 },
+        { name: "Caregivers", href: "/caregivers", icon: Users },
+        { name: "Individuals", href: "/Individuals", icon: User },
       ],
     },
     {
@@ -53,8 +59,8 @@ const Navigation = ({ isScrolled = false }) => {
       icon: FileText,
       hasDropdown: true,
       submenu: [
-        { name: "Events", href: "#", icon: Calendar },
-        { name: "Press Releases", href: "#", icon: FileText },
+        { name: "Events", href: "/events", icon: Calendar },
+        { name: "Blogs", href: "/blogs", icon: FileText },
       ],
     },
   ];
@@ -160,98 +166,100 @@ const Navigation = ({ isScrolled = false }) => {
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
-      {/* Mobile Navigation */}
-      <div
-        className={`fixed top-0 right-0 h-screen w-full bg-black/50 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={closeMenu}
-      >
+      {/* Mobile Navigation - Only render on client */}
+      {isClient && (
         <div
-          className={`absolute top-0 right-0 h-full w-80 sm:w-96 backdrop-blur-xl border-l border-white/30 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 right-0 h-screen w-full bg-black/50 backdrop-blur-sm z-[99] lg:hidden transition-opacity duration-300 ${
+            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%)",
-            borderLeft: "1px solid rgba(255, 255, 255, 0.3)",
-          }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={closeMenu}
         >
-          {/* Mobile Header */}
           <div
-            className="flex items-center justify-between p-6 border-b border-white/30"
+            className={`absolute top-0 right-0 h-full w-80 sm:w-96 backdrop-blur-xl border-l border-white/30 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+              isOpen ? "translate-x-0" : "translate-x-full"
+            }`}
             style={{
               background:
-                "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)",
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%)",
+              borderLeft: "1px solid rgba(255, 255, 255, 0.3)",
             }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-xl font-bold text-white drop-shadow-lg">
-              Menu
-            </h2>
-            <button
-              onClick={closeMenu}
-              className="p-2 rounded-lg transition-all cursor-pointer duration-200 text-white hover:bg-white/20 drop-shadow-lg"
+            {/* Mobile Header */}
+            <div
+              className="flex items-center justify-between p-6 border-b border-white/30"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%)",
+              }}
             >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+              <h2 className="text-xl font-bold text-white drop-shadow-lg">
+                Menu
+              </h2>
+              <button
+                onClick={closeMenu}
+                className="p-2 rounded-lg transition-all cursor-pointer duration-200 text-white hover:bg-white/20 drop-shadow-lg"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-          {/* Mobile Menu Items */}
-          <div className="flex flex-col p-6 space-y-1">
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                <button
-                  className="w-full flex items-center cursor-pointer justify-between p-4 rounded-lg transition-all duration-200 text-white hover:bg-white/10 font-medium"
-                  onClick={() => toggleMobileDropdown(index)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <item.icon className="w-5 h-5 text-blue-300" />
-                    <span className="text-lg">{item.name}</span>
-                  </div>
-                  {item.hasDropdown && (
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === index ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
-                </button>
-
-                {/* Mobile Dropdown */}
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    activeDropdown === index
-                      ? "max-h-96 opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <div className="ml-8 mt-2 space-y-1 transform transition-transform duration-300 ease-in-out">
-                    {item.submenu.map((subItem, subIndex) => (
-                      <Link
-                        key={subIndex}
-                        href={subItem.href}
-                        className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 text-white/90 hover:text-white hover:bg-white/10 transform ${
-                          activeDropdown === index
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-2 opacity-0"
+            {/* Mobile Menu Items */}
+            <div className="flex flex-col p-6 space-y-1">
+              {menuItems.map((item, index) => (
+                <div key={index}>
+                  <button
+                    className="w-full flex items-center cursor-pointer justify-between p-4 rounded-lg transition-all duration-200 text-white hover:bg-white/10 font-medium"
+                    onClick={() => toggleMobileDropdown(index)}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <item.icon className="w-5 h-5 text-blue-300" />
+                      <span className="text-lg">{item.name}</span>
+                    </div>
+                    {item.hasDropdown && (
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          activeDropdown === index ? "rotate-180" : ""
                         }`}
-                        style={{
-                          transitionDelay: `${subIndex * 50}ms`,
-                        }}
-                        onClick={closeMenu}
-                      >
-                        <subItem.icon className="w-4 h-4 text-blue-300" />
-                        <span>{subItem.name}</span>
-                      </Link>
-                    ))}
+                      />
+                    )}
+                  </button>
+
+                  {/* Mobile Dropdown */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      activeDropdown === index
+                        ? "max-h-96 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="ml-8 mt-2 space-y-1 transform transition-transform duration-300 ease-in-out">
+                      {item.submenu.map((subItem, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          href={subItem.href}
+                          className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 text-white/90 hover:text-white hover:bg-white/10 transform ${
+                            activeDropdown === index
+                              ? "translate-y-0 opacity-100"
+                              : "translate-y-2 opacity-0"
+                          }`}
+                          style={{
+                            transitionDelay: `${subIndex * 50}ms`,
+                          }}
+                          onClick={closeMenu}
+                        >
+                          <subItem.icon className="w-4 h-4 text-blue-300" />
+                          <span>{subItem.name}</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

@@ -61,7 +61,8 @@ function Header() {
             <Navigation isScrolled={isScrolled} />
           </div>
           <div className="hidden lg:flex items-center justify-center">
-            <button
+            <Link
+              href={"/contact-us"}
               className={`px-4 py-1.5 rounded-sm cursor-pointer text-base hover:scale-105 transition duration-300 ${
                 isScrolled
                   ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
@@ -77,7 +78,7 @@ function Header() {
               }
             >
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
       </div>

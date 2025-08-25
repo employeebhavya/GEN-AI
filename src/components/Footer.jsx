@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -18,6 +18,13 @@ import {
 } from "lucide-react";
 
 function Footer() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Static footer navigation to prevent hydration mismatches
   const footerNavigation = {
     Company: [
       { name: "About", href: "/about-us" },
@@ -31,14 +38,16 @@ function Footer() {
       { name: "Employer", href: "#agetech" },
     ],
     "News Room": [
-      { name: "Events", href: "#how-it-works" },
-      { name: "Press Releases", href: "#emp-benefits" },
-      { name: "Contact Us", href: "#emp-benefits" },
+      { name: "Events", href: "/events" },
+      { name: "Blogs", href: "/blogs" },
+      { name: "Contact Us", href: "/contact-us" },
     ],
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -56,22 +65,28 @@ function Footer() {
 
         {/* Animated overlay gradient */}
         <div
-          className="absolute inset-0 opacity-60 animate-pulse"
+          className={`absolute inset-0 opacity-60 ${
+            isClient ? "animate-pulse" : ""
+          }`}
           style={{
             background:
               "linear-gradient(45deg, rgba(20, 69, 163, 0.8) 0%, rgba(133, 14, 128, 0.6) 50%, rgba(9, 41, 100, 0.8) 100%)",
             backgroundSize: "400% 400%",
-            animation: "gradientShift 8s ease-in-out infinite",
+            animation: isClient
+              ? "gradientShift 8s ease-in-out infinite"
+              : "none",
           }}
         ></div>
 
         {/* Floating particles effect */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-bounce delay-100"></div>
-          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-300/30 rounded-full animate-ping delay-300"></div>
-          <div className="absolute top-1/2 left-3/4 w-3 h-3 bg-purple-300/20 rounded-full animate-pulse delay-500"></div>
-          <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-white/15 rounded-full animate-bounce delay-700"></div>
-        </div>
+        {isClient && (
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-bounce delay-100"></div>
+            <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-300/30 rounded-full animate-ping delay-300"></div>
+            <div className="absolute top-1/2 left-3/4 w-3 h-3 bg-purple-300/20 rounded-full animate-pulse delay-500"></div>
+            <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-white/15 rounded-full animate-bounce delay-700"></div>
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -204,19 +219,6 @@ function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes gradientShift {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-      `}</style>
     </footer>
   );
 }

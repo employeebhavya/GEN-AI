@@ -12,7 +12,7 @@ function AiDriven() {
       color: "from-pink-400 to-purple-500",
       bgColor: "bg-gradient-to-br from-pink-50 to-purple-50",
       delay: "0ms",
-      image: "/data.png",
+      image: "/01.png",
     },
     {
       icon: Users,
@@ -22,7 +22,7 @@ function AiDriven() {
       color: "from-green-400 to-blue-500",
       bgColor: "bg-gradient-to-br from-green-50 to-blue-50",
       delay: "200ms",
-      image: "/insight-personal.png",
+      image: "/02.png",
     },
     {
       icon: Lightbulb,
@@ -32,7 +32,7 @@ function AiDriven() {
       color: "from-blue-400 to-indigo-500",
       bgColor: "bg-gradient-to-br from-blue-50 to-indigo-50",
       delay: "400ms",
-      image: "/inovation-continuous.png",
+      image: "/03.png",
     },
   ];
 
@@ -95,7 +95,7 @@ function AiDriven() {
                       alt={feature.title}
                       width={500}
                       height={300}
-                      className="w-full h-[50vh] object-contain mt-6 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-[70vh] object-contain mt-6 group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
 

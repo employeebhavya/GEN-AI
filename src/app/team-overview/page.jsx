@@ -11,9 +11,10 @@ function page() {
         description={
           "Leadership is about creating impact, empowering others, and driving change. Our commitment is to nurture leaders who rise to challenges and deliver outstanding results with integrity and purpose."
         }
-        image={"/banners/banner_img.png"}
-        height={"76vh"}
-        imgheight={"h-[300px]"}
+        image={"/about/team.png"}
+        imgheight={"xl:h-[60vh]"}
+        imgwidth={"xl:w-auto"}
+        innerPadding={"lg:pt-4 lg:pb-0"}
       />
       <TeamMosaic />
     </>

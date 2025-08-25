@@ -60,7 +60,23 @@ function Nexcura() {
                 {/* Feature Icons */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <Link
-                    href={"#"}
+                    href={"/employers"}
+                    className="relative z-0 rounded-xl overflow-hidden group"
+                  >
+                    <Image
+                      src="/Employers.webp"
+                      alt="Personal"
+                      width={400}
+                      height={480}
+                      className="w-full h-full md:h-[300px] object-cover group-hover:scale-125 transition-transform duration-1000"
+                    />
+                    <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
+                      Employers
+                    </h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
+                  </Link>
+                  <Link
+                    href={"/caregivers"}
                     className="relative z-0 rounded-xl overflow-hidden group"
                   >
                     <Image
@@ -77,7 +93,7 @@ function Nexcura() {
                   </Link>
 
                   <Link
-                    href={"#"}
+                    href={"/Individuals"}
                     className="relative z-0 rounded-xl overflow-hidden group"
                   >
                     <Image
@@ -89,23 +105,6 @@ function Nexcura() {
                     />
                     <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
                       Individuals
-                    </h3>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
-                  </Link>
-
-                  <Link
-                    href={"#"}
-                    className="relative z-0 rounded-xl overflow-hidden group"
-                  >
-                    <Image
-                      src="/Employers.webp"
-                      alt="Personal"
-                      width={400}
-                      height={480}
-                      className="w-full h-full md:h-[300px] object-cover group-hover:scale-125 transition-transform duration-1000"
-                    />
-                    <h3 className="absolute text-xl bottom-6 md:bottom-3 left-6 text-white font-medium z-[2]">
-                      Employers
                     </h3>
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-[1]"></div>
                   </Link>
