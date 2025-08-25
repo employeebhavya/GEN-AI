@@ -12,7 +12,7 @@ function AboutUs() {
           "Founded by a team of passionate healthcare innovators and AI technology experts. GenAI HealthCare has evolved from a visonary idea to a leading force in AI-driven health solutions. We believe in a future where individuals have access to accurate medical data and can then create remedial solutions to help imporove quality of life."
         }
         image={"/about/executive.webp"}
-        imgheight={"xl:h-[60vh]"}
+        imgheight={"xl:h-full"}
         imgwidth={"xl:w-auto"}
         innerPadding={"lg:pt-4 lg:pb-0"}
       />

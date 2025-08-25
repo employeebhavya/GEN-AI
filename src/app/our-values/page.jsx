@@ -13,7 +13,7 @@ function page() {
           "We're pioneering a new standard in health guidance, using individual health data to craft highly personalized health plans. Our AI-driven approach means each recommendation is uniquely suited to your personal health profile."
         }
         image={"/banners/values.webp"}
-        imgheight={"xl:h-[60vh]"}
+        imgheight={"xl:h-full"}
         imgwidth={"xl:w-auto"}
         innerPadding={"lg:pt-4 lg:pb-0"}
       />

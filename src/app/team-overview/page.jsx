@@ -12,7 +12,7 @@ function page() {
           "Leadership is about creating impact, empowering others, and driving change. Our commitment is to nurture leaders who rise to challenges and deliver outstanding results with integrity and purpose."
         }
         image={"/about/team.png"}
-        imgheight={"xl:h-[60vh]"}
+        imgheight={"xl:h-full"}
         imgwidth={"xl:w-auto"}
         innerPadding={"lg:pt-4 lg:pb-0"}
       />
