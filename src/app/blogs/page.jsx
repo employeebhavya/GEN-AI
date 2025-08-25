@@ -6,7 +6,7 @@ function Blogs() {
   return (
     <>
       <HealthcareHero
-        title={"BlogsHealth Insights"}
+        title={"Health Blogs"}
         description={
           "Explore the latest trends in healthcare, from cutting-edge treatments to holistic wellness approaches. Stay informed, inspired, and empowered to take charge of your health journey with our informative articles and resources."
         }
