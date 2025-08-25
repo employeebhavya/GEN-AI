@@ -107,40 +107,35 @@ const pilotProgramData = [
   { name: "Inactive", value: 13, color: "#f1f5f9" },
 ];
 
-// Feature comparison data
+// Feature comparison data - Updated to remove nexcura property
 const featureComparisonData = [
   {
     feature: "Premium personalized health insights with predictive analytics",
-    nexcura: true,
     nexcuraEmp: true,
   },
   {
     feature: "Full access to all health tracking and management tools",
-    nexcura: true,
     nexcuraEmp: true,
   },
   {
     feature: "24/7 customer support and emergency health service contacts",
-    nexcura: true,
     nexcuraEmp: true,
   },
   {
     feature: "Add account feature to monitor Dependent account",
-    nexcura: true,
     nexcuraEmp: true,
   },
   {
     feature: "Add on features for Health / Medical test",
-    nexcura: true,
     nexcuraEmp: true,
   },
-  { feature: "Employee health tracking", nexcura: false, nexcuraEmp: true },
-  { feature: "Sick leave status", nexcura: false, nexcuraEmp: true },
-  { feature: "Employee health score", nexcura: false, nexcuraEmp: true },
-  { feature: "Notifications and alerts", nexcura: false, nexcuraEmp: true },
-  { feature: "Upcoming events", nexcura: false, nexcuraEmp: true },
-  { feature: "Event calendar", nexcura: false, nexcuraEmp: true },
-  { feature: "Event scheduler", nexcura: false, nexcuraEmp: true },
+  { feature: "Employee health tracking", nexcuraEmp: true },
+  { feature: "Sick leave status", nexcuraEmp: true },
+  { feature: "Employee health score", nexcuraEmp: true },
+  { feature: "Notifications and alerts", nexcuraEmp: true },
+  { feature: "Upcoming events", nexcuraEmp: true },
+  { feature: "Event calendar", nexcuraEmp: true },
+  { feature: "Event scheduler", nexcuraEmp: true },
 ];
 
 // Custom Chart Components
@@ -398,7 +393,7 @@ const KPICard = ({
   );
 };
 
-// Feature Comparison Component
+// Feature Comparison Component - Updated for 2 columns
 const FeatureComparison = () => (
   <div className="bg-white/70 backdrop-blur-sm border border-gray-200 rounded-2xl p-8">
     <div className="text-center mb-8">
@@ -406,61 +401,39 @@ const FeatureComparison = () => (
         Feature Comparison
       </h2>
       <p className="text-gray-600 max-w-4xl mx-auto">
-        NexCura provides essential health management features, while NexCura
-        Enterprise enhances functionality with employee health monitoring, sick
-        leave management, and wellness activities for comprehensive
-        organizational health solutions.
+        NexCura Enterprise enhances functionality with employee health
+        monitoring, sick leave management, and wellness activities for
+        comprehensive organizational health solutions.
       </p>
     </div>
 
     <div className="grid gap-4">
-      {/* Header */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+      {/* Header - Updated for 2 columns */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+        <div className="md:col-span-3 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
           <h3 className="text-lg font-semibold text-gray-900">Features</h3>
         </div>
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4 lg:text-center">
-          <h3 className="text-lg font-semibold text-gray-900">NexCura</h3>
-        </div>
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4 lg:text-center">
+        <div className="md:col-span-2 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4 lg:text-center">
           <h3 className="text-lg font-semibold text-gray-900">
             NexCura Enterprise
           </h3>
         </div>
       </div>
 
-      {/* Feature Rows */}
+      {/* Feature Rows - Updated for 2 columns */}
       {featureComparisonData.map((feature, index) => (
         <motion.div
           key={index}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:items-center"
+          className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:items-center"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <div className="bg-white/80 border border-gray-200 rounded-lg p-4">
+          <div className="md:col-span-3 bg-white/80 border border-gray-200 rounded-lg p-4">
             <p className="text-sm text-gray-800">{feature.feature}</p>
           </div>
 
-          <div className="bg-white/80 border border-gray-200 rounded-lg p-4 flex lg:justify-center">
-            {feature.nexcura ? (
-              <div className="flex items-center gap-2">
-                <Check className="text-green-600" size={20} />
-                <span className="text-sm font-medium text-green-600">
-                  Included
-                </span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <X className="text-gray-400" size={20} />
-                <span className="text-sm font-medium text-gray-400">
-                  Not Available
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div className="bg-white/80 border border-gray-200 rounded-lg p-4 flex lg:justify-center">
+          <div className="md:col-span-2 bg-white/80 border border-gray-200 rounded-lg p-4 flex lg:justify-center">
             <div className="flex items-center gap-2">
               <Check className="text-blue-600" size={20} />
               <span className="text-sm font-medium text-blue-600">
