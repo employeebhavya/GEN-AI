@@ -56,15 +56,6 @@ const TeamMosaic = () => {
       color: "from-cyan-500 to-blue-600",
     },
     {
-      id: "prasennjit",
-      name: "Prasennjit K Ghosh",
-      title: "Senior Vice President, India",
-      image:
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face",
-      bio: "Leading operations and growth in India",
-      color: "from-indigo-500 to-purple-600",
-    },
-    {
       id: "jaymen",
       name: "Jaymen Chavda",
       title: "General Counsel",
@@ -132,15 +123,6 @@ const TeamMosaic = () => {
       expertise: ["Strategic Planning", "Industry Partnerships"],
     },
     {
-      id: "felice-adv",
-      name: "Felice Felser, MSN",
-      title: "Product Strategy",
-      description: "20+ years healthcare product leadership",
-      image:
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face",
-      expertise: ["Product Management", "Healthcare Solutions"],
-    },
-    {
       id: "dhanya-adv",
       name: "Dhanya Vijayakumar, MD",
       title: "Clinical Solutions",
@@ -148,15 +130,6 @@ const TeamMosaic = () => {
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
       expertise: ["Clinical Practice", "Medical Advisory"],
-    },
-    {
-      id: "sweta",
-      name: "Sweta Sneha",
-      title: "Business Strategy",
-      description: "Strategic business advisor",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-      expertise: ["Business Development", "Strategic Consulting"],
     },
   ];
 
@@ -170,15 +143,6 @@ const TeamMosaic = () => {
         "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
       specialization: "Medical Leadership",
       credentials: "MD, Board Certified",
-    },
-    {
-      id: "felice-clinical",
-      name: "Felice Felser, MSN",
-      title: "Product Strategy Advisor",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-      specialization: "Clinical Product Strategy",
-      credentials: "MSN, RN",
     },
     {
       id: "srividhya",

@@ -96,6 +96,7 @@ function AiDriven() {
                       width={500}
                       height={300}
                       className="w-full h-[70vh] object-contain mt-6 group-hover:scale-105 transition-transform duration-500"
+                      quality={100}
                     />
                   </div>
 
