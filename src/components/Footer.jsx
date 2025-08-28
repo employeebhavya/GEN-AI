@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -15,27 +15,22 @@ import {
   Instagram,
   ArrowUp,
   Newspaper,
+  Youtube,
 } from "lucide-react";
 
 function Footer() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   // Static footer navigation to prevent hydration mismatches
   const footerNavigation = {
     Company: [
       { name: "About", href: "/about-us" },
       { name: "Our Values", href: "/our-values" },
       { name: "Team Overview", href: "/team-overview" },
-      { name: "Become a Partner", href: "#" },
+      { name: "Join Us", href: "/join-us" },
     ],
     NexCura: [
-      { name: "Caregiver", href: "#consumer" },
-      { name: "Individuals", href: "#emp" },
-      { name: "Employer", href: "#agetech" },
+      { name: "Caregivers", href: "/caregivers" },
+      { name: "Individuals", href: "/Individuals" },
+      { name: "Employers", href: "/employers" },
     ],
     "News Room": [
       { name: "Events", href: "/events" },
@@ -65,28 +60,21 @@ function Footer() {
 
         {/* Animated overlay gradient */}
         <div
-          className={`absolute inset-0 opacity-60 ${
-            isClient ? "animate-pulse" : ""
-          }`}
+          className="absolute inset-0 opacity-60"
           style={{
             background:
               "linear-gradient(45deg, rgba(20, 69, 163, 0.8) 0%, rgba(133, 14, 128, 0.6) 50%, rgba(9, 41, 100, 0.8) 100%)",
             backgroundSize: "400% 400%",
-            animation: isClient
-              ? "gradientShift 8s ease-in-out infinite"
-              : "none",
           }}
         ></div>
 
         {/* Floating particles effect */}
-        {isClient && (
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-bounce delay-100"></div>
-            <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-300/30 rounded-full animate-ping delay-300"></div>
-            <div className="absolute top-1/2 left-3/4 w-3 h-3 bg-purple-300/20 rounded-full animate-pulse delay-500"></div>
-            <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-white/15 rounded-full animate-bounce delay-700"></div>
-          </div>
-        )}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-bounce delay-100"></div>
+          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-300/30 rounded-full animate-ping delay-300"></div>
+          <div className="absolute top-1/2 left-3/4 w-3 h-3 bg-purple-300/20 rounded-full animate-pulse delay-500"></div>
+          <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-white/15 rounded-full animate-bounce delay-700"></div>
+        </div>
       </div>
 
       {/* Content */}
@@ -176,32 +164,44 @@ function Footer() {
               {/* Social Links */}
               <div className="flex items-center gap-4 order-first sm:order-none">
                 <Link
-                  href="#"
-                  className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="#"
+                  href="https://www.linkedin.com/company/gen-ai-healthcare/"
+                  target="_blank"
                   className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://twitter.com/genaihealthcare"
+                  target="_blank"
+                  className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://www.facebook.com/profile.php?id=61556415143670"
+                  target="_blank"
+                  className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://www.instagram.com/genaihealthcare/"
+                  target="_blank"
                   className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="https://www.youtube.com/@GenAIHealthcare"
+                  target="_blank"
+                  className="text-white/50 hover:text-white hover:scale-110 transition-all duration-200"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="w-5 h-5" />
                 </Link>
               </div>
 

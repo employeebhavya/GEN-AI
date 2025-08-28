@@ -158,8 +158,8 @@ const userThankYouTemplate = (formData) => `
 
             <div class="footer">
                 <p><strong>Need immediate assistance?</strong></p>
-                <p>📧 Email: contact@nexcura.com | 📞 Phone: +1 (555) 123-4567</p>
-                <p>🌐 Visit us at: www.nexcura.com</p>
+                <p>📧 Email: contact@nexcura.com</p>
+                <p>🌐 Visit us at: https://www.genaihealth.care/</p>
                 <hr style="margin: 20px 0; border: none; border-top: 1px solid #dee2e6;">
                 <p style="font-size: 12px;">This email was sent because you contacted us through our website. If you have any questions, please reply to this email.</p>
             </div>
