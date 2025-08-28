@@ -827,7 +827,7 @@ const NexCuraEmployerDashboard = () => {
                 </div>
               </div>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                Seamless Sick Leave Management with NexCura
+                Seamless Absence Management with NexCura
               </h2>
               <p className="text-base lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                 NexCura enables employees to effortlessly apply for sick leave,

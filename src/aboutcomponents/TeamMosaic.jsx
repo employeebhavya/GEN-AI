@@ -14,8 +14,7 @@ const TeamMosaic = () => {
       id: "ramesh",
       name: "Ramesh Sundararajan",
       title: "Chief Executive Officer",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/ramesh.jpg",
       bio: "Leading our vision towards innovative healthcare solutions",
       color: "from-blue-500 to-indigo-600",
     },
@@ -23,17 +22,14 @@ const TeamMosaic = () => {
       id: "kalyan",
       name: "Kalyan Gudladana",
       title: "President & CTO",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      bio: "Driving technological innovation and product development",
+      image: "/team/kalyan.jpg",
       color: "from-purple-500 to-pink-600",
     },
     {
       id: "daniel",
       name: "Dr. Daniel Botelho, MD",
       title: "Chief Medical Officer",
-      image:
-        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/daniel.jpeg",
       bio: "Ensuring medical excellence and clinical integrity",
       color: "from-green-500 to-teal-600",
     },
@@ -50,9 +46,7 @@ const TeamMosaic = () => {
       id: "yousuf-lead",
       name: "Yousuf Al Yousuf",
       title: "President, Middle East Market",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
-      bio: "Expanding our presence in Middle Eastern markets",
+      image: "/team/yousuf.jpg",
       color: "from-cyan-500 to-blue-600",
     },
     {
@@ -68,8 +62,7 @@ const TeamMosaic = () => {
       id: "james",
       name: "James Porter",
       title: "Director, Business Development",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      image: "/team/james.jpg",
       bio: "Forging strategic partnerships and opportunities",
       color: "from-amber-500 to-orange-600",
     },
@@ -100,8 +93,7 @@ const TeamMosaic = () => {
       name: "Yousuf Al Yousuf",
       title: "Middle East Market",
       description: "COO of AI Yosuf Group",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      image: "/team/yousuf.jpg",
       expertise: ["Regional Markets", "Healthcare Innovation"],
     },
     {
@@ -127,8 +119,7 @@ const TeamMosaic = () => {
       name: "Dhanya Vijayakumar, MD",
       title: "Clinical Solutions",
       description: "Practicing neurologist and medical advisor",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      image: "/team/dhanya.jpeg",
       expertise: ["Clinical Practice", "Medical Advisory"],
     },
   ];
@@ -139,8 +130,7 @@ const TeamMosaic = () => {
       id: "daniel-clinical",
       name: "Daniel Botelho, MD",
       title: "Chief Medical Officer",
-      image:
-        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/daniel.jpeg",
       specialization: "Medical Leadership",
       credentials: "MD, Board Certified",
     },
@@ -157,8 +147,7 @@ const TeamMosaic = () => {
       id: "dhanya-clinical",
       name: "Dr. Dhanya Vijayakumar",
       title: "Clinical Solutions Advisor",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      image: "/team/dhanya.jpeg",
       specialization: "Neurology",
       credentials: "MD, Neurologist",
     },

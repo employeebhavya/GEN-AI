@@ -15,6 +15,17 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
+import { events } from "@/data/eventsData";
+
+// Icon mapping
+const iconMap = {
+  Award: <Award className="w-6 h-6" />,
+  Sparkles: <Sparkles className="w-6 h-6" />,
+  Network: <Network className="w-6 h-6" />,
+  Mic: <Mic className="w-6 h-6" />,
+  Users: <Users className="w-6 h-6" />,
+  Calendar: <Calendar className="w-6 h-6" />,
+};
 
 const EventsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,81 +33,6 @@ const EventsPage = () => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const events = [
-    {
-      id: 1,
-      date: "July 3, 2025",
-      title: "FiTEN Convention",
-      location: "Raleigh, NC",
-      type: "Convention",
-      description:
-        "Leading financial technology and innovation summit bringing together industry pioneers.",
-      icon: <Award className="w-6 h-6" />,
-      status: "upcoming",
-      link: "https://example.com/fiten-convention",
-    },
-    {
-      id: 2,
-      date: "June 25, 2025",
-      title: "Financial Express Healthcare Summit & Awards 2025",
-      location: "India",
-      type: "Summit",
-      description:
-        "Celebrating excellence in healthcare innovation and digital transformation.",
-      icon: <Sparkles className="w-6 h-6" />,
-      status: "upcoming",
-      link: "https://example.com/fe-healthcare-summit",
-    },
-    {
-      id: 3,
-      date: "June 11, 2025",
-      title: "TiE Atlanta Monthly Meeting",
-      location: "Atlanta, GA",
-      type: "Networking",
-      description:
-        "Monthly gathering of entrepreneurs and industry leaders fostering innovation.",
-      icon: <Network className="w-6 h-6" />,
-      status: "upcoming",
-      link: "https://example.com/tie-atlanta",
-    },
-    {
-      id: 4,
-      date: "June 10, 2025",
-      title: "Venture Atlanta 2025 PitchFest",
-      location: "Atlanta, GA",
-      type: "Pitch Event",
-      description:
-        "Startup pitch competition showcasing breakthrough healthcare technologies.",
-      icon: <Mic className="w-6 h-6" />,
-      status: "upcoming",
-      link: "https://example.com/venture-atlanta",
-    },
-    {
-      id: 5,
-      date: "May 3, 2025",
-      title: "Digital Health Transformation Summit",
-      location: "Virtual & In-Person",
-      type: "Summit",
-      description:
-        "Exploring the future of digital health and AI-powered medical solutions.",
-      icon: <Users className="w-6 h-6" />,
-      status: "past",
-      link: "https://example.com/digital-health-summit",
-    },
-    {
-      id: 6,
-      date: "April 16, 2025",
-      title: "Georgia Technology Summit",
-      location: "Atlanta, GA",
-      type: "Technology Summit",
-      description:
-        "Advancing technology innovation across healthcare and enterprise sectors.",
-      icon: <Calendar className="w-6 h-6" />,
-      status: "past",
-      link: "https://example.com/georgia-tech-summit",
-    },
-  ];
 
   const AnimatedSeparator = ({ delay = 0 }) => (
     <div className="relative w-full h-16 flex items-center justify-center mt-12 mb-8">
@@ -233,7 +169,7 @@ const EventsPage = () => {
 
                     {/* Event Icon */}
                     <div className="mb-8 p-4 w-fit bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl text-indigo-600 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      {event.icon}
+                      {iconMap[event.icon] || <Calendar className="w-6 h-6" />}
                     </div>
 
                     {/* Event Details */}
@@ -244,7 +180,12 @@ const EventsPage = () => {
                       </div>
 
                       <h3 className="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-300 leading-tight py-1">
-                        {event.title}
+                        <Link
+                          href={`/events/${event.slug}`}
+                          className="hover:underline"
+                        >
+                          {event.title}
+                        </Link>
                       </h3>
 
                       <div className="flex items-center gap-3 text-sm text-slate-600 bg-slate-50/60 rounded-full px-4 py-2 w-fit">
@@ -260,16 +201,17 @@ const EventsPage = () => {
                         {event.description}
                       </p>
 
-                      {/* Event Link with Cursor Pointer */}
-                      <Link
-                        href={event.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group/link cursor-pointer"
-                      >
-                        <span>Learn More</span>
-                        <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
-                      </Link>
+                      {/* Event Links */}
+                      <div className="flex gap-3 mt-6">
+                        {/* Internal Link to Event Details */}
+                        <Link
+                          href={`/events/${event.slug}`}
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group/link cursor-pointer"
+                        >
+                          <span>View Details</span>
+                          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                        </Link>
+                      </div>
                     </div>
 
                     {/* Hover Effect */}

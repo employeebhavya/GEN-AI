@@ -50,7 +50,7 @@ const Navigation = ({ isScrolled = false }) => {
         { name: "About Us", href: "/about-us", icon: Info },
         { name: "Our Values", href: "/our-values", icon: Award },
         { name: "Team Overview", href: "/team-overview", icon: Users2 },
-        { name: "Join Us", href: "#", icon: Briefcase },
+        { name: "Join Us", href: "/join-us", icon: Briefcase },
       ],
     },
     {
