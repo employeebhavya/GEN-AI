@@ -645,7 +645,7 @@ const NexCuraEmployerDashboard = () => {
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
               <KPICard
                 icon={DollarSign}
-                value={6}
+                value={3}
                 suffix=":1"
                 label="Average ROI"
                 color="blue"
@@ -653,8 +653,8 @@ const NexCuraEmployerDashboard = () => {
               />
               <KPICard
                 icon={TrendingUp}
-                value={3.27}
-                prefix="$"
+                value={10}
+                suffix="%"
                 label="Healthcare Savings"
                 color="green"
                 decimals={2}
@@ -662,8 +662,8 @@ const NexCuraEmployerDashboard = () => {
               />
               <KPICard
                 icon={BarChart3}
-                value={2.73}
-                prefix="$"
+                value={5}
+                suffix="%"
                 label="Absenteeism Savings"
                 color="purple"
                 decimals={2}
@@ -671,7 +671,7 @@ const NexCuraEmployerDashboard = () => {
               />
               <KPICard
                 icon={Activity}
-                value={15}
+                value={10}
                 suffix="%"
                 label="Absenteeism Drop"
                 color="red"
@@ -702,7 +702,7 @@ const NexCuraEmployerDashboard = () => {
                     Claims Reduction
                   </h3>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">18%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">12%</div>
                 <p className="text-gray-600 text-sm">
                   Average reduction in annual health insurance claims per
                   employee

@@ -648,7 +648,9 @@ const NexCuraCaregiverHero = () => {
           className="text-center"
         >
           <div className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/30 inline-block">
-            <p className="text-slate-600 mb-4">Caregiving Market Growth</p>
+            <p className="text-black mb-4 font-bold">
+              Caregiving Market Growth
+            </p>
             <div className="flex items-center space-x-8">
               <div>
                 <p className="text-3xl font-bold text-slate-800">

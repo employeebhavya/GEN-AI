@@ -1,272 +1,548 @@
-// app/events/page.js
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Calendar,
-  MapPin,
   Clock,
+  ExternalLink,
   Users,
-  Mic,
-  Award,
-  Network,
+  MapPin,
   ArrowRight,
   Sparkles,
-  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
-import Link from "next/link";
 import { events } from "@/data/eventsData";
 
-// Icon mapping
-const iconMap = {
-  Award: <Award className="w-6 h-6" />,
-  Sparkles: <Sparkles className="w-6 h-6" />,
-  Network: <Network className="w-6 h-6" />,
-  Mic: <Mic className="w-6 h-6" />,
-  Users: <Users className="w-6 h-6" />,
-  Calendar: <Calendar className="w-6 h-6" />,
+// Animation variants (same as before)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
 
-const EventsPage = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+const heroVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
-  const AnimatedSeparator = ({ delay = 0 }) => (
-    <div className="relative w-full h-16 flex items-center justify-center mt-12 mb-8">
-      <div
-        className={`w-40 h-px bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent transform transition-all duration-1000 delay-${delay} ${
-          isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-        }`}
-      />
-      <div
-        className={`absolute w-3 h-3 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full transform transition-all duration-1000 delay-${
-          delay + 200
-        } ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
-      />
-      <div className="absolute w-6 h-6 border border-indigo-300/30 rounded-full animate-ping" />
-    </div>
-  );
+// Pagination Component
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  if (totalPages <= 1) return null;
+
+  const getVisiblePages = () => {
+    const visiblePages = [];
+    const maxVisible = 5;
+
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) {
+        visiblePages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) {
+          visiblePages.push(i);
+        }
+        visiblePages.push("...");
+        visiblePages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        visiblePages.push(1);
+        visiblePages.push("...");
+        for (let i = totalPages - 3; i <= totalPages; i++) {
+          visiblePages.push(i);
+        }
+      } else {
+        visiblePages.push(1);
+        visiblePages.push("...");
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          visiblePages.push(i);
+        }
+        visiblePages.push("...");
+        visiblePages.push(totalPages);
+      }
+    }
+
+    return visiblePages;
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section - Dark */}
-      <section className="relative h-screen flex items-center justify-center bg-slate-950 text-white">
-        {/* Background Image with Overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
-          }}
-        />
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="flex items-center justify-center gap-2 mt-12"
+    >
+      {/* Previous Button */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </Button>
 
-        {/* Dark Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-slate-900/90 to-purple-900/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+      {/* Page Numbers */}
+      <div className="flex items-center gap-1">
+        {visiblePages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page === "..." ? (
+              <span className="px-3 py-2 text-gray-400 text-sm">...</span>
+            ) : (
+              <Button
+                variant={currentPage === page ? "default" : "ghost"}
+                size="sm"
+                onClick={() => onPageChange(page)}
+                className={`h-10 w-10 text-sm font-medium transition-all duration-200 ${
+                  currentPage === page
+                    ? "bg-blue-600 text-white shadow-lg hover:bg-blue-700"
+                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                }`}
+              >
+                {page}
+              </Button>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
 
-        {/* Animated Background Elements */}
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      {/* Next Button */}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </Button>
+    </motion.div>
+  );
+};
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
-          <div
-            className={`transform transition-all duration-1000 delay-300 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-12 leading-tight py-4">
-              Events
-            </h1>
-          </div>
+// Updated Event Card Component (same as before)
+const EventCard = ({ event, index }) => {
+  const eventDate = new Date(event.date);
+  const currentDate = new Date();
+  const isUpcoming = eventDate >= currentDate;
 
-          <div
-            className={`transform transition-all duration-1000 delay-500 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-10 max-w-4xl mx-auto font-medium">
-              Discover how GenAI HealthCare is shaping the future of healthcare
-              through global conferences, summits, and thought-leadership events
-              that drive innovation and transform patient care worldwide.
-            </p>
-          </div>
+  const formattedDate = eventDate.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
-          <div
-            className={`transform transition-all duration-1000 delay-700 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            <div className="flex items-center justify-center gap-3 text-blue-400 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-blue-400/30 shadow-lg w-fit mx-auto">
-              <Sparkles className="w-5 h-5 animate-pulse text-purple-400" />
-              <span className="text-lg font-semibold">
-                Where Innovation Meets Impact
-              </span>
-              <Sparkles className="w-5 h-5 animate-pulse text-cyan-400" />
+  const fullFormattedDate = eventDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return (
+    <motion.div variants={cardVariants} whileHover={{ y: -4 }}>
+      <Card className="group overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+        <div className="relative overflow-hidden">
+          <div className="aspect-video relative">
+            <Image
+              src={event.image}
+              alt={event.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+            {/* Status Badge */}
+            <div className="absolute top-4 right-4">
+              <Badge
+                variant={isUpcoming ? "default" : "secondary"}
+                className={`backdrop-blur-md font-medium ${
+                  isUpcoming
+                    ? "bg-emerald-500 text-white shadow-emerald-500/25"
+                    : "bg-gray-500/80 text-white shadow-gray-500/25"
+                } shadow-lg`}
+              >
+                {isUpcoming ? "Upcoming" : "Past Event"}
+              </Badge>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-blue-400/60 rounded-full flex justify-center bg-white/10 backdrop-blur-sm">
-            <div className="w-1 h-3 bg-blue-400 rounded-full mt-2 animate-pulse" />
-          </div>
-        </div>
-      </section>
-
-      {/* Light Background Section */}
-      <div className="bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 text-slate-800">
-        <AnimatedSeparator />
-
-        {/* Events Section - Reduced Spacing */}
-        <section className="relative pb-16 px-6">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 leading-tight py-2">
-                Upcoming Events
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Join us at these transformative events shaping the future of
-                healthcare technology
-              </p>
-            </div>
-
-            {/* Events Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {events.map((event, index) => (
-                <div
-                  key={event.id}
-                  className={`group relative transform transition-all duration-700 delay-${
-                    index * 100
-                  } ${
-                    isVisible
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-8 opacity-0"
-                  }`}
-                >
-                  {/* Glassmorphism Card */}
-                  <div className="relative h-full p-8 rounded-3xl bg-white/70 backdrop-blur-xl border border-white/60 hover:border-indigo-200/80 transition-all duration-300 hover:transform hover:scale-105 hover:bg-white/80 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/10">
-                    {/* Status Badge */}
-                    <div
-                      className={`absolute top-6 right-6 px-4 py-2 rounded-full text-xs font-bold ${
-                        event.status === "upcoming"
-                          ? "bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-lg"
-                          : "bg-gradient-to-r from-slate-300 to-slate-400 text-slate-700 shadow-md"
-                      }`}
-                    >
-                      {event.status === "upcoming" ? "Upcoming" : "Past Event"}
-                    </div>
-
-                    {/* Event Icon */}
-                    <div className="mb-8 p-4 w-fit bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl text-indigo-600 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      {iconMap[event.icon] || <Calendar className="w-6 h-6" />}
-                    </div>
-
-                    {/* Event Details */}
-                    <div className="space-y-5 relative z-10">
-                      <div className="flex items-center gap-3 text-sm text-indigo-600 font-semibold bg-indigo-50/60 rounded-full px-4 py-2 w-fit">
-                        <Calendar className="w-4 h-4" />
-                        <span>{event.date}</span>
-                      </div>
-
-                      <h3 className="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-300 leading-tight py-1">
-                        <Link
-                          href={`/events/${event.slug}`}
-                          className="hover:underline"
-                        >
-                          {event.title}
-                        </Link>
-                      </h3>
-
-                      <div className="flex items-center gap-3 text-sm text-slate-600 bg-slate-50/60 rounded-full px-4 py-2 w-fit">
-                        <MapPin className="w-4 h-4" />
-                        <span>{event.location}</span>
-                      </div>
-
-                      <div className="inline-block px-4 py-2 bg-gradient-to-r from-purple-400/20 to-pink-400/20 text-purple-700 rounded-full text-sm font-semibold border border-purple-200/60 shadow-sm">
-                        {event.type}
-                      </div>
-
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        {event.description}
-                      </p>
-
-                      {/* Event Links */}
-                      <div className="flex gap-3 mt-6">
-                        {/* Internal Link to Event Details */}
-                        <Link
-                          href={`/events/${event.slug}`}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group/link cursor-pointer"
-                        >
-                          <span>View Details</span>
-                          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 transition-all duration-300 z-0" />
+            {/* Enhanced Date Overlay */}
+            <div className="absolute bottom-0 left-0 right-0">
+              <div className="bg-gradient-to-t from-black/90 via-black/70 to-transparent p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center text-white font-bold text-lg">
+                    <Calendar className="w-5 h-5 mr-3 text-white" />
+                    <span className="drop-shadow-lg">{formattedDate}</span>
+                  </div>
+                  <div className="text-white/80 text-sm font-medium">
+                    {fullFormattedDate.split(",")[0]}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <AnimatedSeparator delay={800} />
+        <CardHeader className="pb-3 space-y-2">
+          <CardTitle className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
+            {event.title}
+          </CardTitle>
+        </CardHeader>
 
-        {/* CTA Section - Reduced Spacing */}
-        <section className="relative py-16 px-6">
-          <div className="max-w-5xl mx-auto text-center">
-            <div
-              className={`transform transition-all duration-1000 delay-1000 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
+        <CardContent className="pt-0 space-y-4">
+          <CardDescription className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+            {event.description}
+          </CardDescription>
+
+          {/* Enhanced Learn More Button */}
+          <div className="pt-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="group/btn relative overflow-hidden p-0 h-auto font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all duration-300 cursor-pointer"
+              onClick={() => window.open(event.link, "_blank")}
             >
-              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight py-2">
-                Ready to Join the Innovation?
-              </h2>
-              <p className="text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed font-medium">
-                Be part of the conversation that's reshaping healthcare. Connect
-                with visionaries, innovators, and industry leaders at our next
-                event.
-              </p>
-              <Link href={"/contact-us"}>
-                <button className="group relative px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl text-white font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 shadow-xl cursor-pointer">
-                  <span className="flex items-center gap-4">
-                    Join Our Next Event
-                    <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                  </span>
-
-                  {/* Button Glow Effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300 -z-10" />
-                </button>
-              </Link>
-            </div>
+              <span className="relative z-10 flex items-center">
+                <Sparkles className="w-4 h-4 mr-2 text-blue-600 group-hover/btn:text-purple-600 transition-colors duration-300" />
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold group-hover/btn:from-blue-700 group-hover/btn:to-purple-700">
+                  Discover More
+                </span>
+                <ArrowRight className="w-4 h-4 ml-2 text-purple-600 group-hover/btn:translate-x-1 group-hover/btn:text-blue-600 transition-all duration-300" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-md -m-2" />
+            </Button>
           </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
 
-          {/* Background Elements */}
-          <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-200/40 to-indigo-200/40 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-3xl" />
-        </section>
+// Updated Events Grid Component with Pagination
+const EventsGrid = ({ events, title, currentPage, pageSize = 6 }) => {
+  // Calculate pagination
+  const totalPages = Math.ceil(events.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentEvents = events.slice(startIndex, endIndex);
 
-        {/* Footer Spacing - Reduced */}
-        <div className="h-12" />
+  if (events.length === 0) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center py-16"
+      >
+        <div className="max-w-md mx-auto">
+          <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+            <Calendar className="w-12 h-12 text-gray-400" />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-700 mb-3">
+            No {title} Found
+          </h3>
+          <p className="text-gray-500 text-lg">
+            {title === "upcoming events"
+              ? "No upcoming events scheduled. Please check back later!"
+              : "No past events to display at the moment."}
+          </p>
+        </div>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+    >
+      {currentEvents.map((event, index) => (
+        <EventCard key={event.id} event={event} index={index} />
+      ))}
+    </motion.div>
+  );
+};
+
+// Hero Section Component (same as before)
+const HeroSection = () => {
+  return (
+    <div className="relative h-screen w-full overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          alt="Conference stage with audience"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+        />
+      </div>
+
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+
+      <div className="relative z-20 h-full flex items-center justify-center px-4">
+        <motion.div
+          variants={heroVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center max-w-4xl mx-auto"
+        >
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Shaping the Future of
+            <span className="block bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Innovation
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-xl md:text-2xl text-white/90 mb-8 font-light leading-relaxed max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Discover world-class conferences, summits, and networking events
+            that connect industry pioneers and shape tomorrow's breakthroughs.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Button
+              size="lg"
+              className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/30 px-8 py-4 text-lg font-medium transition-all duration-300 hover:scale-105"
+              onClick={() =>
+                document
+                  .getElementById("events-section")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Explore Events
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
-export default EventsPage;
+// Main Events Page Component
+export default function EventsPage() {
+  const currentDate = new Date();
+  const pageSize = 6;
+
+  // Pagination state
+  const [upcomingCurrentPage, setUpcomingCurrentPage] = useState(1);
+  const [pastCurrentPage, setPastCurrentPage] = useState(1);
+  const [activeTab, setActiveTab] = useState("upcoming");
+
+  const upcomingEvents = events
+    .filter((event) => new Date(event.date) >= currentDate)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  const pastEvents = events
+    .filter((event) => new Date(event.date) < currentDate)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  // Calculate total pages
+  const upcomingTotalPages = Math.ceil(upcomingEvents.length / pageSize);
+  const pastTotalPages = Math.ceil(pastEvents.length / pageSize);
+
+  // Handle tab change and reset pagination
+  const handleTabChange = (value) => {
+    setActiveTab(value);
+    if (value === "upcoming") {
+      setUpcomingCurrentPage(1);
+    } else {
+      setPastCurrentPage(1);
+    }
+  };
+
+  // Reset to page 1 when switching tabs if current page exceeds total pages
+  const handleUpcomingPageChange = (page) => {
+    setUpcomingCurrentPage(page);
+    // Smooth scroll to top of events section
+    document.getElementById("events-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handlePastPageChange = (page) => {
+    setPastCurrentPage(page);
+    // Smooth scroll to top of events section
+    document.getElementById("events-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <HeroSection />
+
+      <section id="events-section" className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Featured Events
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Connect with industry leaders, discover cutting-edge innovations,
+              and expand your professional network at our curated selection of
+              premier events.
+            </p>
+
+            <div className="flex justify-center gap-12 mt-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-600">
+                  {upcomingEvents.length}
+                </div>
+                <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                  Upcoming Events
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600">
+                  {pastEvents.length}
+                </div>
+                <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                  Past Events
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Fixed Tabs with Pagination */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Tabs
+              value={activeTab}
+              onValueChange={handleTabChange}
+              className="w-full"
+            >
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12 p-2 bg-gray-100/80 backdrop-blur-sm rounded-xl h-14 border border-gray-200/50">
+                <TabsTrigger
+                  value="upcoming"
+                  className="cursor-pointer text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:shadow-gray-200/50 rounded-lg transition-all duration-300 hover:bg-white/50"
+                >
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Upcoming ({upcomingEvents.length})
+                </TabsTrigger>
+                <TabsTrigger
+                  value="past"
+                  className="cursor-pointer text-base font-medium data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:shadow-gray-200/50 rounded-lg transition-all duration-300 hover:bg-white/50"
+                >
+                  <Clock className="w-5 h-5 mr-2" />
+                  Past ({pastEvents.length})
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent
+                value="upcoming"
+                className="space-y-8 focus-visible:outline-none"
+              >
+                <EventsGrid
+                  events={upcomingEvents}
+                  title="upcoming events"
+                  currentPage={upcomingCurrentPage}
+                  pageSize={pageSize}
+                />
+                <Pagination
+                  currentPage={upcomingCurrentPage}
+                  totalPages={upcomingTotalPages}
+                  onPageChange={handleUpcomingPageChange}
+                />
+              </TabsContent>
+
+              <TabsContent
+                value="past"
+                className="space-y-8 focus-visible:outline-none"
+              >
+                <EventsGrid
+                  events={pastEvents}
+                  title="past events"
+                  currentPage={pastCurrentPage}
+                  pageSize={pageSize}
+                />
+                <Pagination
+                  currentPage={pastCurrentPage}
+                  totalPages={pastTotalPages}
+                  onPageChange={handlePastPageChange}
+                />
+              </TabsContent>
+            </Tabs>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
