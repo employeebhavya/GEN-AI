@@ -353,14 +353,16 @@ const NexCuraCaregiverHero = () => {
                     $<AnimatedCounter to={22} />B
                   </p>
                   <p className="text-sm text-slate-600">
-                    Remote monitoring market 2024
+                    Remote patient monitoring market in 2024
                   </p>
                 </div>
                 <div>
                   <p className="text-2xl lg:text-3xl font-bold text-emerald-600">
                     $<AnimatedCounter to={110} />B
                   </p>
-                  <p className="text-sm text-slate-600">Projected by 2033</p>
+                  <p className="text-sm text-slate-600">
+                    Projected market size by 2033
+                  </p>
                 </div>
                 <div>
                   <p className="text-xl lg:text-2xl font-bold text-purple-600">
@@ -368,7 +370,7 @@ const NexCuraCaregiverHero = () => {
                     M+
                   </p>
                   <p className="text-sm text-slate-600">
-                    Americans using remote monitoring by 2025
+                    Americans expected to use remote monitoring tools by 2025
                   </p>
                 </div>
               </div>
@@ -652,14 +654,19 @@ const NexCuraCaregiverHero = () => {
                 <p className="text-3xl font-bold text-slate-800">
                   $<AnimatedCounter to={468} />B
                 </p>
-                <p className="text-sm text-slate-600">2024 Market Size</p>
+                <p className="text-sm text-slate-600">
+                  Global caregiving market size in 2024
+                </p>
               </div>
               <div className="text-2xl text-slate-300">→</div>
               <div>
                 <p className="text-3xl font-bold text-emerald-600">
-                  $<AnimatedCounter to={700} />B
+                  $<AnimatedCounter to={680} />B
                 </p>
-                <p className="text-sm text-slate-600">2035 Projection</p>
+                <p className="text-sm text-slate-600">
+                  Projected caregiving market size by 2035 (conservative,
+                  realistic projection)
+                </p>
               </div>
             </div>
           </div>

@@ -180,7 +180,7 @@ const ContactPage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 xl:max-w-[70%] mx-auto"
         >
           <Card className="bg-white/70 backdrop-blur-sm border border-cyan-200/50 hover:border-cyan-300 transition-all duration-300 hover:shadow-lg">
             <CardContent className="p-6 text-center">
@@ -213,16 +213,6 @@ const ContactPage = () => {
               <p className="text-gray-600">Data Security</p>
             </CardContent>
           </Card>
-
-          <Card className="bg-white/70 backdrop-blur-sm border border-green-200/50 hover:border-green-300 transition-all duration-300 hover:shadow-lg">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">24/7</h3>
-              <p className="text-gray-600">AI Support</p>
-            </CardContent>
-          </Card>
         </motion.div>
 
         {/* Contact Methods Overview */}
@@ -235,7 +225,7 @@ const ContactPage = () => {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
             Multiple Ways to Connect
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:max-w-4xl mx-auto">
             <motion.div
               whileHover={{ scale: 1.02, y: -5 }}
               className="text-center p-6 rounded-2xl  border border-cyan-300"
@@ -265,22 +255,6 @@ const ContactPage = () => {
               <p className="text-gray-600">
                 Schedule a personalized demo to see how Nexcura can transform
                 your healthcare operations.
-              </p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="text-center p-6 rounded-2xl border border-green-300"
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Direct Call
-              </h3>
-              <p className="text-gray-600">
-                Speak directly with our healthcare technology experts for
-                immediate assistance.
               </p>
             </motion.div>
           </div>
@@ -317,44 +291,6 @@ const ContactPage = () => {
                         Email
                       </h3>
                       <p className="text-gray-600">info@nexcura.com</p>
-                      <p className="text-sm text-gray-500">
-                        24/7 Support Available
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center space-x-4 p-4 rounded-xl bg-white/50 hover:bg-white/70 transition-colors cursor-pointer"
-                  >
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded-full shadow-lg">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 text-lg">
-                        Phone
-                      </h3>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                      <p className="text-sm text-gray-500">Mon-Fri 9AM-6PM</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center space-x-4 p-4 rounded-xl bg-white/50 hover:bg-white/70 transition-colors cursor-pointer"
-                  >
-                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full shadow-lg">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 text-lg">
-                        Office
-                      </h3>
-                      <p className="text-gray-600">
-                        123 Healthcare Innovation Blvd
-                        <br />
-                        Tech City, TC 12345
-                      </p>
                     </div>
                   </motion.div>
 
@@ -444,14 +380,16 @@ const ContactPage = () => {
                         className="flex items-center space-x-3 py-4 px-6 rounded-xl text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:scale-105 hover:bg-white/70 cursor-pointer"
                       >
                         <MessageSquare className="w-5 h-5" />
-                        <span>Send Message</span>
+                        <span className="text-sm md:text-base">
+                          Send Message
+                        </span>
                       </TabsTrigger>
                       <TabsTrigger
                         value="appointment"
                         className="flex items-center space-x-3 py-4 px-6 rounded-xl text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:scale-105 hover:bg-white/70 cursor-pointer"
                       >
                         <CalendarIcon className="w-5 h-5" />
-                        <span>Book Demo</span>
+                        <span className="text-sm md:text-base">Book Demo</span>
                       </TabsTrigger>
                     </TabsList>
 
@@ -644,12 +582,13 @@ const ContactPage = () => {
             <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  How quickly can I get started?
+                  Why NexCura App?
                 </h3>
                 <p className="text-gray-600">
-                  Our team typically responds within 24 hours. For demos, we can
-                  usually schedule within 2-3 business days based on your
-                  availability.
+                  NexCura App leverages advanced AI technology to provide
+                  personalized healthcare insights, making health management
+                  more intuitive, efficient, and tailored to individual needs.
+                  It's not just an app; it's a comprehensive health companion.
                 </p>
               </CardContent>
             </Card>
@@ -657,12 +596,14 @@ const ContactPage = () => {
             <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Is my data secure with Nexcura?
+                  How does NexCura ensure the privacy and security of my health
+                  data?
                 </h3>
                 <p className="text-gray-600">
-                  Absolutely. We maintain 99.9% data security with
-                  enterprise-grade encryption and comply with all healthcare
-                  data regulations including HIPAA.
+                  We prioritize your privacy and security. NexCura uses
+                  state-of-the-art encryption and complies with all relevant
+                  data protection regulations to ensure that your personal
+                  health information is kept secure and confidential.
                 </p>
               </CardContent>
             </Card>
@@ -670,12 +611,13 @@ const ContactPage = () => {
             <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  What makes Nexcura different?
+                  Can NexCura integrate with my existing health devices and
+                  apps?
                 </h3>
                 <p className="text-gray-600">
-                  Our AI-driven platform offers personalized healthcare
-                  solutions, real-time insights, and seamless integration with
-                  existing healthcare systems.
+                  Absolutely! NexCura is designed to seamlessly integrate with a
+                  wide range of health devices and apps, allowing for a
+                  centralized and comprehensive view of your health data.
                 </p>
               </CardContent>
             </Card>
@@ -683,12 +625,40 @@ const ContactPage = () => {
             <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Do you offer implementation support?
+                  Is NexCura suitable for managing chronic health conditions?
                 </h3>
                 <p className="text-gray-600">
-                  Yes! Our expert team provides full implementation support,
-                  training, and ongoing assistance to ensure your success with
-                  Nexcura.
+                  Yes, NexCura is ideal for managing chronic health conditions.
+                  It provides continuous monitoring, personalized
+                  recommendations, and tracks your health trends to help manage
+                  and mitigate chronic health issues effectively.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  What makes NexCura different from other health apps?
+                </h3>
+                <p className="text-gray-600">
+                  NexCura stands out due to its AI-driven personalized health
+                  insights, comprehensive health dashboard, community support
+                  features, and its ability to adapt and evolve with your health
+                  journey, offering a unique and holistic health management
+                  experience.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  How can I get started with NexCura ?
+                </h3>
+                <p className="text-gray-600">
+                  Getting started with NexCura is easy. Simply download the app,
+                  create an account, and begin your personalized health journey.
+                  You can also sign up for our free trial to explore NexCura ’s
+                  features before committing to a subscription.
                 </p>
               </CardContent>
             </Card>

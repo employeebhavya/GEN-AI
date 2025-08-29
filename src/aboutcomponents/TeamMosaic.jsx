@@ -29,7 +29,7 @@ const TeamMosaic = () => {
       id: "daniel",
       name: "Dr. Daniel Botelho, MD",
       title: "Chief Medical Officer",
-      image: "/team/daniel.jpeg",
+      image: "/team/daniel.jpg",
       bio: "Ensuring medical excellence and clinical integrity",
       color: "from-green-500 to-teal-600",
     },
@@ -119,7 +119,7 @@ const TeamMosaic = () => {
       name: "Dhanya Vijayakumar, MD",
       title: "Clinical Solutions",
       description: "Practicing neurologist and medical advisor",
-      image: "/team/dhanya.jpeg",
+      image: "/team/dhanya.jpg",
       expertise: ["Clinical Practice", "Medical Advisory"],
     },
   ];
@@ -130,7 +130,7 @@ const TeamMosaic = () => {
       id: "daniel-clinical",
       name: "Daniel Botelho, MD",
       title: "Chief Medical Officer",
-      image: "/team/daniel.jpeg",
+      image: "/team/daniel.jpg",
       specialization: "Medical Leadership",
       credentials: "MD, Board Certified",
     },
@@ -147,7 +147,7 @@ const TeamMosaic = () => {
       id: "dhanya-clinical",
       name: "Dr. Dhanya Vijayakumar",
       title: "Clinical Solutions Advisor",
-      image: "/team/dhanya.jpeg",
+      image: "/team/dhanya.jpg",
       specialization: "Neurology",
       credentials: "MD, Neurologist",
     },
@@ -188,7 +188,7 @@ const TeamMosaic = () => {
 
       <div className="relative p-6">
         <div className="flex items-center space-x-4">
-          <div className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white/10 group-hover:ring-white/30 transition-all duration-300">
+          <div className="relative size-28 rounded-full overflow-hidden ring-4 ring-white/10 group-hover:ring-white/30 transition-all duration-300">
             <Image
               src={member.image}
               alt={member.name}
@@ -222,7 +222,7 @@ const TeamMosaic = () => {
     >
       <div className="bg-gradient-to-br from-white to-gray-50 backdrop-blur-lg rounded-2xl p-6 border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer min-h-[309px]">
         <div className="flex flex-col items-center text-center">
-          <div className="relative w-24 h-24 mb-4">
+          <div className="relative size-28 mb-4">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-200 to-blue-200 rounded-full animate-pulse opacity-30" />
             <div className="relative w-full h-full rounded-full overflow-hidden border-3 border-gray-200">
               <Image
@@ -266,13 +266,12 @@ const TeamMosaic = () => {
       style={{ transformStyle: "preserve-3d" }}
     >
       <div className="bg-gradient-to-br from-white to-gray-100 backdrop-blur-lg rounded-3xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative w-full h-[400px] overflow-hidden">
           <Image
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover w-full h-auto "
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
@@ -394,7 +393,7 @@ const TeamMosaic = () => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {clinicalTeam.map((member) => (
                   <ClinicalCard key={member.id} member={member} />

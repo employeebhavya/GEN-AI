@@ -642,14 +642,14 @@ const NexCuraEmployerDashboard = () => {
             </div>
 
             {/* KPI Cards - Fixed to 3 in a row for better display */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
               <KPICard
                 icon={DollarSign}
                 value={6}
                 suffix=":1"
                 label="Average ROI"
                 color="blue"
-                description="Wellness programs return"
+                description="for every $1 invested in wellness, employers save $6 total"
               />
               <KPICard
                 icon={TrendingUp}
@@ -658,7 +658,7 @@ const NexCuraEmployerDashboard = () => {
                 label="Healthcare Savings"
                 color="green"
                 decimals={2}
-                description="Per dollar invested"
+                description="saved in medical costs for every $1 invested"
               />
               <KPICard
                 icon={BarChart3}
@@ -667,36 +667,15 @@ const NexCuraEmployerDashboard = () => {
                 label="Absenteeism Savings"
                 color="purple"
                 decimals={2}
-                description="Per dollar invested"
-              />
-            </div>
-
-            {/* Second row of KPI Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <KPICard
-                icon={Award}
-                value={250}
-                suffix="M"
-                prefix="$"
-                label="J&J Total Savings"
-                color="orange"
-                description="2002-2008 (2.7x return)"
-              />
-              <KPICard
-                icon={Users}
-                value={72}
-                suffix="%"
-                label="Companies Success"
-                color="blue"
-                description="Lower healthcare costs"
+                description="saved in absenteeism costs for every $1 invested"
               />
               <KPICard
                 icon={Activity}
-                value={16}
+                value={15}
                 suffix="%"
                 label="Absenteeism Drop"
                 color="red"
-                description="Average decrease"
+                description="average reduction in absenteeism across participating employees"
               />
             </div>
 
@@ -709,9 +688,9 @@ const NexCuraEmployerDashboard = () => {
                     Employee Retention
                   </h3>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">89%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">82%</div>
                 <p className="text-gray-600 text-sm">
-                  Employees view wellness support as a key reason to stay with
+                  Employees report wellness support as a key reason to stay with
                   their company
                 </p>
               </div>
@@ -723,10 +702,10 @@ const NexCuraEmployerDashboard = () => {
                     Claims Reduction
                   </h3>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">24%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">18%</div>
                 <p className="text-gray-600 text-sm">
-                  Average reduction in health insurance claims per employee
-                  annually
+                  Average reduction in annual health insurance claims per
+                  employee
                 </p>
               </div>
 
@@ -737,16 +716,15 @@ const NexCuraEmployerDashboard = () => {
                     Energy Levels
                   </h3>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">78%</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">74%</div>
                 <p className="text-gray-600 text-sm">
-                  Employees reporting significantly higher energy levels and
-                  productivity
+                  Employees reporting higher energy levels and productivity
                 </p>
               </div>
             </div>
 
             {/* Case Study Highlight */}
-            <motion.div
+            {/* <motion.div
               className="bg-gradient-to-r from-blue-100 via-purple-50 to-blue-100 border border-blue-300 rounded-2xl p-4 xl:p-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -810,7 +788,7 @@ const NexCuraEmployerDashboard = () => {
                   size={24}
                 />
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Sick Leave Management Section */}

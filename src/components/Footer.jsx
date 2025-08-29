@@ -99,19 +99,10 @@ function Footer() {
               </p>
 
               {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
-                  <Mail className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                  <span className="text-sm">contact@genaihealth.care</span>
-                </div>
-                <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                  <span className="text-sm">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
-                  <MapPin className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                  <span className="text-sm">Atlanta, GA, USA</span>
-                </div>
+
+              <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer">
+                <Mail className="w-4 h-4 text-blue-300 flex-shrink-0" />
+                <span className="text-sm">contact@genaihealth.care</span>
               </div>
             </div>
 

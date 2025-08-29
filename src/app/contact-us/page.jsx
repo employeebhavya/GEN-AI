@@ -14,6 +14,7 @@ function ContactUs() {
         imgheight={"xl:h-[60vh]"}
         imgwidth={"xl:w-auto"}
         innerPadding={"lg:pt-4 lg:pb-0"}
+        isVisible={"hidden"}
       />
       <ContactPage />
     </div>
