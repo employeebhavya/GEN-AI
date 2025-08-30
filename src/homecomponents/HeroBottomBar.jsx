@@ -97,7 +97,7 @@ function HeroBottomBar() {
                   alt={"Georgia Innovation Award"}
                   width={64}
                   height={64}
-                  className="size-14 w-auto object-cover"
+                  className="w-[100px] h-auto object-cover"
                   quality={100}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -117,7 +117,7 @@ function HeroBottomBar() {
                   alt={"Startup Atlanta Feature"}
                   width={64}
                   height={64}
-                  className="size-14 w-auto object-cover"
+                  className="w-[120px] h-auto object-cover"
                   quality={100}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
