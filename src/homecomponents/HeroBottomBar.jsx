@@ -98,6 +98,7 @@ function HeroBottomBar() {
                   width={64}
                   height={64}
                   className="size-14 w-auto object-cover"
+                  quality={100}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
@@ -117,6 +118,7 @@ function HeroBottomBar() {
                   width={64}
                   height={64}
                   className="size-14 w-auto object-cover"
+                  quality={100}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
