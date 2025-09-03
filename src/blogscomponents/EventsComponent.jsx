@@ -121,7 +121,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         size="sm"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer"
       >
         <ChevronLeft className="w-4 h-4" />
       </Button>
@@ -156,7 +156,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         size="sm"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+        className="p-2 h-10 w-10 border-gray-200 hover:border-blue-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer"
       >
         <ChevronRight className="w-4 h-4" />
       </Button>

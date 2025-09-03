@@ -37,8 +37,7 @@ const TeamMosaic = () => {
       id: "robin",
       name: "Robin Hackney",
       title: "Chief Marketing Officer",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/robin.png",
       bio: "Building brand presence and market strategy",
       color: "from-orange-500 to-red-600",
     },

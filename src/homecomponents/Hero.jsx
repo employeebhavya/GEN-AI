@@ -47,7 +47,7 @@ function Hero() {
               to help you live better. Your health, your data, your control, and
               together, we shape a healthier future.
             </p>
-            <div className="flex mt-8">
+            {/* <div className="flex mt-8">
               <button
                 className="flex items-center justify-center gap-2 bg-primary text-base py-2 px-6 text-white hover:bg-secondary cursor-pointer transition-all duration-300"
                 onClick={openVideoModal}
@@ -55,7 +55,7 @@ function Hero() {
                 <span>Watch Video</span>
                 <CirclePlay />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <HeroBottomBar />

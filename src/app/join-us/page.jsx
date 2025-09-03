@@ -95,7 +95,7 @@ export default function CareersPage() {
 
       {/* Jobs Section */}
       <section id="jobs-section" className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
