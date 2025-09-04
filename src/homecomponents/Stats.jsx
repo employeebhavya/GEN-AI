@@ -1,158 +1,359 @@
-import React from "react";
-import {
-  TrendingUp,
-  Minus,
-  Pill,
-  Scale,
-  Activity,
-  Droplets,
-  Percent,
-} from "lucide-react";
+"use client";
 
-function Stats() {
-  const stats = [
-    {
-      number: "73",
-      type: "percent",
-      label: "eliminated medications including injections",
-      icon: Pill,
-      iconColor: "text-blue-500",
-      bgColor: "from-blue-50/20 to-blue-100/30",
-    },
-    {
-      number: "15 lbs",
-      type: "minus",
-      label: "lost in 6 months",
-      sublabel: "",
-      icon: Scale,
-      iconColor: "text-pink-500",
-      bgColor: "from-pink-50/20 to-pink-100/30",
-    },
-    {
-      number: "2.2",
-      type: "minus",
-      label: "point drop in A1C",
-      sublabel: "",
-      icon: Activity,
-      iconColor: "text-green-500",
-      bgColor: "from-green-50/20 to-green-100/30",
-    },
-    {
-      number: "70",
-      type: "percent",
-      label: "reduced inflammation",
-      sublabel: "",
-      icon: TrendingUp,
-      iconColor: "text-purple-500",
-      bgColor: "from-purple-50/20 to-purple-100/30",
-    },
-    {
-      number: "77",
-      type: "percent",
-      label: "improved insulin resistance, in those with type 2 diabetes",
-      sublabel: "",
-      icon: Droplets,
-      iconColor: "text-emerald-500",
-      bgColor: "from-emerald-50/20 to-emerald-100/30",
-    },
-    {
-      number: "67",
-      type: "percent",
-      label: "reduced visceral fat",
-      sublabel: "",
-      icon: Activity,
-      iconColor: "text-blue-600",
-      bgColor: "from-blue-50/20 to-blue-200/30",
-    },
-  ];
+import { motion } from "framer-motion";
+import { Brain, Scale, Apple, Clock, Heart, Flower2 } from "lucide-react";
+
+const healthPillars = [
+  {
+    id: 1,
+    title: "Mental Health",
+    description: "Manage stress effectively",
+    icon: Brain,
+    color: "#3B82F6",
+    bgColor: "bg-blue-500",
+    position: 0,
+  },
+  {
+    id: 2,
+    title: "Weight Control",
+    description: "Maintain healthy weight",
+    icon: Scale,
+    color: "#10B981",
+    bgColor: "bg-emerald-500",
+    position: 1,
+  },
+  {
+    id: 3,
+    title: "Nutrition",
+    description: "Eat balanced meals",
+    icon: Apple,
+    color: "#F59E0B",
+    bgColor: "bg-amber-500",
+    position: 2,
+  },
+  {
+    id: 4,
+    title: "Longevity",
+    description: "Focus on long-term health",
+    icon: Clock,
+    color: "#8B5CF6",
+    bgColor: "bg-violet-500",
+    position: 3,
+  },
+  {
+    id: 5,
+    title: "Medical Care",
+    description: "Regular health checkups",
+    icon: Heart,
+    color: "#EF4444",
+    bgColor: "bg-red-500",
+    position: 4,
+  },
+  {
+    id: 6,
+    title: "Wellness",
+    description: "Holistic well-being",
+    icon: Flower2,
+    color: "#06B6D4",
+    bgColor: "bg-cyan-500",
+    position: 5,
+  },
+];
+
+const getCirclePosition = (index, radius, centerX, centerY) => {
+  const angle = (index * 60 - 90) * (Math.PI / 180);
+  const x = centerX + radius * Math.cos(angle);
+  const y = centerY + radius * Math.sin(angle);
+  return { x, y, angle };
+};
+
+const getTextBoxPosition = (index, radius, centerX, centerY) => {
+  const angle = (index * 60 - 90) * (Math.PI / 180);
+  const circleRadius = 45;
+  const boxWidth = 140;
+  const boxHeight = 80;
+  const gap = 15; // Gap between circle edge and text box
+
+  // Circle position
+  const circleX = centerX + radius * Math.cos(angle);
+  const circleY = centerY + radius * Math.sin(angle);
+
+  // Calculate distance from center to text box center
+  const textBoxDistance =
+    radius + circleRadius + gap + Math.max(boxWidth, boxHeight) / 2;
+
+  // Text box center position
+  const textBoxCenterX = centerX + textBoxDistance * Math.cos(angle);
+  const textBoxCenterY = centerY + textBoxDistance * Math.sin(angle);
+
+  // Text box top-left position
+  const x = textBoxCenterX - boxWidth / 2;
+  const y = textBoxCenterY - boxHeight / 2;
+
+  return { x, y, angle };
+};
+
+const CircleItem = ({ pillar, index, radius, centerX, centerY }) => {
+  const IconComponent = pillar.icon;
+  const circlePos = getCirclePosition(index, radius, centerX, centerY);
+  const textPos = getTextBoxPosition(index, radius, centerX, centerY);
 
   return (
-    <section className="bg-gradient-to-br from-gray-200 via-white to-gray-300 py-16 relative overflow-hidden z-0">
-      <div className="container relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-8">
-            The power of a healthy metabolism
+    <>
+      {/* Connecting line from center to circle */}
+      <motion.line
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
+        x1={centerX}
+        y1={centerY}
+        x2={circlePos.x}
+        y2={circlePos.y}
+        stroke="#94A3B8"
+        strokeWidth="2"
+      />
+
+      {/* Circle */}
+      <motion.g
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: 0.3 + index * 0.1,
+          type: "spring",
+          stiffness: 200,
+        }}
+        whileHover={{ scale: 1.1 }}
+        className="cursor-pointer"
+      >
+        {/* Shadow */}
+        <circle
+          cx={circlePos.x + 2}
+          cy={circlePos.y + 2}
+          r="45"
+          fill="rgba(0,0,0,0.1)"
+        />
+
+        {/* Main Circle */}
+        <circle
+          cx={circlePos.x}
+          cy={circlePos.y}
+          r="45"
+          fill={pillar.color}
+          stroke="white"
+          strokeWidth="4"
+        />
+
+        {/* Icon */}
+        <foreignObject
+          x={circlePos.x - 15}
+          y={circlePos.y - 15}
+          width="30"
+          height="30"
+        >
+          <div className="flex items-center justify-center w-full h-full">
+            <IconComponent size={24} className="text-white" />
+          </div>
+        </foreignObject>
+
+        {/* Number Badge */}
+        <circle
+          cx={circlePos.x + 28}
+          cy={circlePos.y - 28}
+          r="14"
+          fill="white"
+          stroke={pillar.color}
+          strokeWidth="2"
+        />
+        <text
+          x={circlePos.x + 28}
+          y={circlePos.y - 28}
+          textAnchor="middle"
+          dominantBaseline="central"
+          className="text-sm font-bold"
+          fill={pillar.color}
+        >
+          {index + 1}
+        </text>
+      </motion.g>
+
+      {/* Text Box positioned to touch but not overlap circle */}
+      <motion.g
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+      >
+        {/* Text Box Background */}
+        <rect
+          x={textPos.x}
+          y={textPos.y}
+          width="140"
+          height="80"
+          rx="8"
+          fill="white"
+          stroke="#E2E8F0"
+          strokeWidth="1"
+          filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
+        />
+
+        {/* Title */}
+        <foreignObject
+          x={textPos.x + 10}
+          y={textPos.y + 15}
+          width="120"
+          height="30"
+        >
+          <div className="text-sm font-bold text-gray-800 text-center leading-tight">
+            {pillar.title}
+          </div>
+        </foreignObject>
+
+        {/* Description */}
+        <foreignObject
+          x={textPos.x + 10}
+          y={textPos.y + 50}
+          width="120"
+          height="25"
+        >
+          <div className="text-xs text-gray-600 text-center leading-relaxed">
+            {pillar.description}
+          </div>
+        </foreignObject>
+      </motion.g>
+    </>
+  );
+};
+
+const MobileCircleItem = ({ pillar, index }) => {
+  const IconComponent = pillar.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ scale: 1.02 }}
+      className="bg-white rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300"
+    >
+      <div className="flex items-center space-x-4">
+        <div
+          className={`${pillar.bgColor} w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 relative`}
+        >
+          <IconComponent size={22} className="text-white" />
+          <div
+            className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+            style={{ backgroundColor: pillar.color }}
+          >
+            {index + 1}
+          </div>
+        </div>
+        <div className="flex-1">
+          <h3 className="text-base font-bold text-gray-800 mb-1">
+            {pillar.title}
+          </h3>
+          <p className="text-gray-600 text-sm">{pillar.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default function ProfessionalCircleInfographic() {
+  const svgSize = 800; // Increased to accommodate text boxes
+  const centerX = svgSize / 2;
+  const centerY = svgSize / 2;
+  const circleRadius = 180;
+
+  return (
+    <section className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.header
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+            Healthy Lifestyle
+          </h1>
+          <h2 className="text-2xl lg:text-3xl text-gray-600 font-medium">
+            Six Key Pillars
           </h2>
-        </div>
+        </motion.header>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 xl:max-w-[70%] mx-auto">
-          {stats.map((stat, index) => (
-            <div key={index} className="group relative">
-              {/* Glassmorphism Card */}
-              <div className="relative h-full min-h-[200px]">
-                {/* Main Glass Background */}
-                <div className="absolute inset-0 bg-white/80 backdrop-blur-lg border border-white/60 rounded-3xl shadow-xl group-hover:shadow-2xl transition-all duration-500"></div>
+        {/* Desktop Circular Design */}
+        <div className="hidden lg:block">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="flex justify-center"
+          >
+            <div className="relative">
+              <svg
+                width={svgSize}
+                height={svgSize}
+                className="overflow-visible"
+                viewBox={`0 0 ${svgSize} ${svgSize}`}
+              >
+                {/* Circle Items with corrected positioning */}
+                {healthPillars.map((pillar, index) => (
+                  <CircleItem
+                    key={pillar.id}
+                    pillar={pillar}
+                    index={index}
+                    radius={circleRadius}
+                    centerX={centerX}
+                    centerY={centerY}
+                  />
+                ))}
+              </svg>
 
-                {/* Subtle Color Gradient */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} rounded-3xl group-hover:opacity-80 transition-opacity duration-500`}
-                ></div>
-
-                {/* Border Highlight */}
-                <div className="absolute inset-0 rounded-3xl border border-gray-200/40 group-hover:border-gray-300/60 transition-all duration-500"></div>
-
-                {/* Hover Glow Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 via-transparent to-gray-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                {/* Content */}
-                <div className="relative z-10 p-8 text-left transform group-hover:scale-[1.02] transition-transform duration-500 h-full flex flex-col justify-center">
-                  {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-sm border border-gray-200/50 mb-6 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-md">
-                    <stat.icon className={`w-7 h-7 ${stat.iconColor}`} />
+              {/* Central Hub */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                         w-32 h-32 bg-white rounded-full shadow-xl border-4 border-gray-200
+                         flex flex-col items-center justify-center z-10"
+              >
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🌟</div>
+                  <div className="text-gray-800 font-bold text-sm leading-tight">
+                    <div>Healthy</div>
+                    <div>Lifestyle</div>
                   </div>
-
-                  {/* Number with Symbol */}
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors duration-300 flex items-start gap-1">
-                    {stat.type === "minus" && (
-                      <Minus className="w-6 h-6 mt-6 text-gray-600" />
-                    )}
-                    <span>{stat.number}</span>
-                    {stat.type === "percent" && (
-                      <span className="text-3xl sm:text-4xl lg:text-5xl text-gray-600 ml-1 mt-4">
-                        <Percent />
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Sublabel for units */}
-                  {stat.sublabel && stat.type === "minus" && (
-                    <div className="text-lg font-medium text-gray-600 mb-3">
-                      {stat.sublabel}
-                    </div>
-                  )}
-
-                  {/* Label */}
-                  <div className="text-base sm:text-lg text-gray-700 font-medium leading-relaxed">
-                    {stat.label}
-                  </div>
-
-                  {/* Additional sublabel */}
-                  {stat.sublabel && stat.type !== "minus" && (
-                    <div className="text-sm text-gray-500 mt-2 leading-relaxed">
-                      {stat.sublabel}
-                    </div>
-                  )}
-
-                  {/* Animated Accent Line */}
-                  <div className="absolute bottom-6 left-8 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-16 transition-all duration-500 rounded-full"></div>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          ))}
+          </motion.div>
         </div>
 
-        {/* Footer Note */}
-        <div className="text-center">
-          <p className="text-sm text-gray-500 italic">
-            GenAI Healthcare commercial population, members 365 days in program.
-            Data as of September 2024.
-          </p>
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          <div className="space-y-4 max-w-md mx-auto">
+            {healthPillars.map((pillar, index) => (
+              <MobileCircleItem key={pillar.id} pillar={pillar} index={index} />
+            ))}
+          </div>
         </div>
+
+        {/* Bottom Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="mt-10 text-center"
+        >
+          <div className="inline-block px-6 py-3 bg-white rounded-full shadow-lg">
+            <p className="text-gray-600 font-medium">
+              Your Journey to Wellness Starts Here
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
-export default Stats;

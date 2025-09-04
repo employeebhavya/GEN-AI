@@ -6,7 +6,7 @@ import HomeAbout from "@/homecomponents/HomeAbout";
 import HomeIconBoxex from "@/homecomponents/HomeIconBoxex";
 import Nexcura from "@/homecomponents/Nexcura";
 import PartneringScroll from "@/homecomponents/PartneringScroll";
-import Stats from "@/homecomponents/Stats";
+import ProfessionalCircleInfographic from "@/homecomponents/Stats";
 import Testimonial from "@/homecomponents/Testimonial";
 import WorldClassTreatment from "@/homecomponents/WorldClassTreatment";
 import React from "react";
@@ -21,7 +21,7 @@ function page() {
       <Collaborate />
       <AiDriven />
       <WorldClassTreatment />
-      <Stats />
+      <ProfessionalCircleInfographic />
       <Nexcura />
       <Testimonial />
       <CallToAction />

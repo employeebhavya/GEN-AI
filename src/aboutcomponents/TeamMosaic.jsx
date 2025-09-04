@@ -52,8 +52,7 @@ const TeamMosaic = () => {
       id: "jaymen",
       name: "Jaymen Chavda",
       title: "General Counsel",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/jaymen.jpeg",
       bio: "Overseeing legal affairs and compliance",
       color: "from-rose-500 to-pink-600",
     },
@@ -74,8 +73,7 @@ const TeamMosaic = () => {
       name: "Neda Barqawi",
       title: "Investor Relations",
       description: "Managing Partner, Knovatech Ventures",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/neda.jpeg",
       expertise: ["Healthcare Investment", "Portfolio Management"],
     },
     {
@@ -83,8 +81,7 @@ const TeamMosaic = () => {
       name: "Jane McCracken",
       title: "Strategic Growth",
       description: "Healthcare growth specialist with multiple exits",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/jane.jpeg",
       expertise: ["Business Growth", "Market Expansion"],
     },
     {
@@ -100,8 +97,7 @@ const TeamMosaic = () => {
       name: "Amir Karuppiah",
       title: "Technology & AI",
       description: "CTO with two successful exits",
-      image:
-        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/amir.jpeg",
       expertise: ["AI Technology", "Product Innovation"],
     },
     {
@@ -109,8 +105,7 @@ const TeamMosaic = () => {
       name: "Srikanth Gundavarappu",
       title: "Business Strategy",
       description: "President, GC Ingredients Inc.",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+      image: "/team/srikanth.jpeg",
       expertise: ["Strategic Planning", "Industry Partnerships"],
     },
     {
@@ -137,8 +132,7 @@ const TeamMosaic = () => {
       id: "srividhya",
       name: "Dr. Srividhya Karunanithi",
       title: "Senior Clinical Research Scientist",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      image: "/team/srividhya.jpg",
       specialization: "Clinical Research",
       credentials: "PhD, Clinical Sciences",
     },
