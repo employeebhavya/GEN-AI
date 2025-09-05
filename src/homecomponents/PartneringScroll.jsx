@@ -7,12 +7,13 @@ function PartneringScroll() {
   // Partner logos array
   const partners = [
     { id: 1, name: "Meditab", logo: "/icons/1.svg" },
-    { id: 2, name: "ModMed", logo: "/icons/2.svg" },
+    { id: 2, name: "ModMed", logo: "/icons/2.png" },
     { id: 3, name: "Nextech", logo: "/icons/3.svg" },
-    { id: 4, name: "AdvancedMD", logo: "/icons/4.svg" },
-    { id: 5, name: "Veradigm", logo: "/icons/5.svg" },
-    { id: 6, name: "Athenahealth", logo: "/icons/6.svg" },
-    { id: 7, name: "GE Healthcare", logo: "/icons/7.svg" },
+    { id: 4, name: "AdvancedMD", logo: "/icons/4.png" },
+    { id: 5, name: "Meditab", logo: "/icons/1.svg" },
+    { id: 6, name: "ModMed", logo: "/icons/2.png" },
+    { id: 7, name: "Nextech", logo: "/icons/3.svg" },
+    { id: 8, name: "AdvancedMD", logo: "/icons/4.png" },
   ];
 
   // Duplicate partners for seamless infinite scroll
@@ -23,12 +24,9 @@ function PartneringScroll() {
       <div className="container">
         {/* Heading */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-700 leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-700 leading-relaxed text-center">
             Trusted By Leading Companies
           </h2>
-          <p className="text-sm sm:text-base text-gray-500">
-            Seamlessly integrated with leading healthcare systems nationwide
-          </p>
         </div>
 
         {/* Scrolling Container */}

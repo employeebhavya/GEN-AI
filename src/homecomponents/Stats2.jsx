@@ -149,7 +149,7 @@ export default function BentoGridInfographic() {
         </motion.div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {/* Row 1 */}
           <BentoCard pillar={healthPillars[0]} index={0} className="h-full" />
           <BentoCard pillar={healthPillars[1]} index={1} className="h-full" />
