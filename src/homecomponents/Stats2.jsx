@@ -88,12 +88,12 @@ const BentoCard = ({ pillar, index, className }) => {
       />
 
       {/* Number Badge */}
-      <div
+      {/* <div
         className={`absolute top-4 right-4 w-8 h-8 bg-gradient-to-br ${pillar.bgGradient} 
                      rounded-full flex items-center justify-center shadow-lg`}
       >
         <span className="text-white text-sm font-bold">{index + 1}</span>
-      </div>
+      </div> */}
 
       {/* Icon */}
       <div
@@ -129,7 +129,7 @@ const BentoCard = ({ pillar, index, className }) => {
 export default function BentoGridInfographic() {
   return (
     <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-18 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="container">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -149,42 +149,18 @@ export default function BentoGridInfographic() {
         </motion.div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-12 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {/* Row 1 */}
-          <BentoCard
-            pillar={healthPillars[0]}
-            index={0}
-            className="col-span-12 md:col-span-8 h-48"
-          />
-          <BentoCard
-            pillar={healthPillars[1]}
-            index={1}
-            className="col-span-12 md:col-span-4 h-48"
-          />
+          <BentoCard pillar={healthPillars[0]} index={0} className="h-full" />
+          <BentoCard pillar={healthPillars[1]} index={1} className="h-full" />
 
           {/* Row 2 */}
-          <BentoCard
-            pillar={healthPillars[2]}
-            index={2}
-            className="col-span-12 md:col-span-4 h-48"
-          />
-          <BentoCard
-            pillar={healthPillars[3]}
-            index={3}
-            className="col-span-12 md:col-span-8 h-48"
-          />
+          <BentoCard pillar={healthPillars[2]} index={2} className="h-full" />
+          <BentoCard pillar={healthPillars[3]} index={3} className="h-full" />
 
           {/* Row 3 */}
-          <BentoCard
-            pillar={healthPillars[4]}
-            index={4}
-            className="col-span-12 md:col-span-6 h-48"
-          />
-          <BentoCard
-            pillar={healthPillars[5]}
-            index={5}
-            className="col-span-12 md:col-span-6 h-48"
-          />
+          <BentoCard pillar={healthPillars[4]} index={4} className="h-full" />
+          <BentoCard pillar={healthPillars[5]} index={5} className="h-full" />
         </div>
       </div>
     </section>
