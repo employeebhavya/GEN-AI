@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function HomeAbout() {
@@ -33,10 +34,12 @@ function HomeAbout() {
             </p>
 
             {/* CTA Button */}
-            <button className="group inline-flex items-center px-8 py-4 bg-primary hover:bg-secondary text-white font-semibold cursor-pointer shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-              <span>Learn More About NexCura</span>
-              <div className="w-5 h-5 ml-2 transform group-hover:scale-110 transition-transform duration-300" />
-            </button>
+            <Link href="/#nexcura">
+              <button className="group inline-flex items-center px-8 py-4 bg-primary hover:bg-secondary text-white font-semibold cursor-pointer shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <span>Learn More About NexCura</span>
+                <div className="w-5 h-5 ml-2 transform group-hover:scale-110 transition-transform duration-300" />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

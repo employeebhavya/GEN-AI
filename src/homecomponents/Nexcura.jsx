@@ -5,7 +5,10 @@ import Link from "next/link";
 
 function Nexcura() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 py-16 overflow-hidden">
+    <section
+      className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 py-16 overflow-hidden"
+      id="nexcura"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle Background Circles */}

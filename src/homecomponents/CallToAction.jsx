@@ -1,13 +1,92 @@
-import React from "react";
-import { ArrowRight, CheckCircle, Star, Sparkles } from "lucide-react";
+"use client";
+
+import React, { useState } from "react";
+import {
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Sparkles,
+  Check,
+  X,
+} from "lucide-react";
+import Link from "next/link";
 
 function CallToAction() {
+  const [formData, setFormData] = useState({
+    email: "",
+    company: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
+
   const features = [
     "Advanced AI powered healthcare solutions",
     "HIPAA compliant and secure data management",
     "Always available dedicated support and assistance",
     "Seamless integration with existing systems",
   ];
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error when user starts typing
+    if (error) setError("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!formData.email || !formData.company) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.company, // Using company as name for this form
+          email: formData.email,
+          company: formData.company,
+          message: `Interest in healthcare solutions from ${formData.company}. Submitted via Call-to-Action form.`,
+          type: "cta-inquiry",
+        }),
+      });
+
+      if (response.ok) {
+        setShowSuccess(true);
+        setFormData({ email: "", company: "" });
+        // Hide success message after 5 seconds
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        const errorData = await response.json();
+        setError(
+          errorData.message || "Failed to send message. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-gray-100 via-blue-50 to-gray-50 py-16 overflow-hidden">
@@ -114,39 +193,69 @@ function CallToAction() {
                         </p>
                       </div>
 
+                      {/* Success Message */}
+                      {showSuccess && (
+                        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                          <div className="flex items-center">
+                            <Check className="w-5 h-5 text-green-600 mr-2" />
+                            <p className="text-green-800 font-medium">
+                              Thank you! We'll be in touch soon.
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Error Message */}
+                      {error && (
+                        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                          <div className="flex items-center">
+                            <X className="w-5 h-5 text-red-600 mr-2" />
+                            <p className="text-red-800 font-medium">{error}</p>
+                          </div>
+                        </div>
+                      )}
+
                       {/* Form */}
-                      <div className="space-y-5 mb-8">
+                      <form onSubmit={handleSubmit} className="space-y-5 mb-8">
                         <div className="relative">
                           <input
                             type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
                             placeholder="Enter your email address"
                             className="w-full px-6 py-4 bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-300"
+                            disabled={isSubmitting}
                           />
                         </div>
 
                         <div className="relative">
                           <input
                             type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleInputChange}
                             placeholder="Your organization name"
                             className="w-full px-6 py-4 bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-300"
+                            disabled={isSubmitting}
                           />
                         </div>
-                      </div>
 
-                      {/* CTA Buttons */}
-                      <div className="space-y-4">
-                        <button className="w-full group cursor-pointer relative overflow-hidden bg-gradient-to-r from-blue-600 to-gray-700 hover:from-blue-700 hover:to-gray-800 text-white font-bold py-3 px-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-                          <div className="relative z-10 flex items-center justify-center">
-                            Get Started Now
-                            <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-                          </div>
-                          <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </button>
-
-                        <button className="w-full bg-primary hover:bg-secondary backdrop-blur-sm text-white cursor-pointer font-semibold py-3 px-8 transition-all duration-300">
-                          Schedule a Demo
-                        </button>
-                      </div>
+                        {/* CTA Buttons */}
+                        <div className="space-y-4">
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-full group cursor-pointer relative overflow-hidden bg-gradient-to-r from-blue-600 to-gray-700 hover:from-blue-700 hover:to-gray-800 text-white font-bold py-3 px-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                          >
+                            <div className="relative z-10 flex items-center justify-center">
+                              {isSubmitting ? "Sending..." : "Get Started Now"}
+                              <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+                            </div>
+                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
 

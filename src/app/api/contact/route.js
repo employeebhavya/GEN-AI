@@ -61,6 +61,8 @@ const adminEmailTemplate = (formData) => `
                 <div class="value">${
                   formData.type === "appointment"
                     ? "Demo Booking Request"
+                    : formData.type === "cta-inquiry"
+                    ? "Call-to-Action Inquiry"
                     : "General Message"
                 }</div>
             </div>
@@ -195,7 +197,11 @@ export async function POST(request) {
       from: process.env.GMAIL_USER,
       to: process.env.ADMIN_EMAIL || process.env.GMAIL_USER,
       subject: `🚀 New ${
-        formData.type === "appointment" ? "Demo Booking" : "Contact Form"
+        formData.type === "appointment"
+          ? "Demo Booking"
+          : formData.type === "cta-inquiry"
+          ? "CTA Inquiry"
+          : "Contact Form"
       } Submission from ${formData.name}`,
       html: adminEmailTemplate(formData),
     };
@@ -205,7 +211,11 @@ export async function POST(request) {
       from: process.env.GMAIL_USER,
       to: formData.email,
       subject: `✨ Thank you for ${
-        formData.type === "appointment" ? "booking a demo with" : "contacting"
+        formData.type === "appointment"
+          ? "booking a demo with"
+          : formData.type === "cta-inquiry"
+          ? "your interest in"
+          : "contacting"
       } Nexcura Healthcare!`,
       html: userThankYouTemplate(formData),
     };

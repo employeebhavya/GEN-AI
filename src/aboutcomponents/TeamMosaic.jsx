@@ -30,7 +30,6 @@ const TeamMosaic = () => {
       name: "Dr. Daniel Botelho, MD",
       title: "Chief Medical Officer",
       image: "/team/daniel.jpg",
-      bio: "Ensuring medical excellence and clinical integrity",
       color: "from-green-500 to-teal-600",
     },
     {
@@ -38,7 +37,6 @@ const TeamMosaic = () => {
       name: "Robin Hackney",
       title: "Chief Marketing Officer",
       image: "/team/robin.png",
-      bio: "Building brand presence and market strategy",
       color: "from-orange-500 to-red-600",
     },
     {
@@ -53,7 +51,6 @@ const TeamMosaic = () => {
       name: "Jaymen Chavda",
       title: "General Counsel",
       image: "/team/jaymen.jpeg",
-      bio: "Overseeing legal affairs and compliance",
       color: "from-rose-500 to-pink-600",
     },
     {
@@ -61,7 +58,6 @@ const TeamMosaic = () => {
       name: "James Porter",
       title: "Director, Business Development",
       image: "/team/james.jpg",
-      bio: "Forging strategic partnerships and opportunities",
       color: "from-amber-500 to-orange-600",
     },
   ];
@@ -105,7 +101,7 @@ const TeamMosaic = () => {
       name: "Srikanth Gundavarappu",
       title: "Business Strategy",
       description: "President, GC Ingredients Inc.",
-      image: "/team/srikanth.jpeg",
+      image: "/team/Srikanth.jpeg",
       expertise: ["Strategic Planning", "Industry Partnerships"],
     },
     {
@@ -132,7 +128,7 @@ const TeamMosaic = () => {
       id: "srividhya",
       name: "Dr. Srividhya Karunanithi",
       title: "Senior Clinical Research Scientist",
-      image: "/team/srividhya.jpg",
+      image: "/team/Srividhya.jpg",
       specialization: "Clinical Research",
       credentials: "PhD, Clinical Sciences",
     },

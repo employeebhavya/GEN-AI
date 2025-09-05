@@ -6,7 +6,8 @@ import HomeAbout from "@/homecomponents/HomeAbout";
 import HomeIconBoxex from "@/homecomponents/HomeIconBoxex";
 import Nexcura from "@/homecomponents/Nexcura";
 import PartneringScroll from "@/homecomponents/PartneringScroll";
-import ProfessionalCircleInfographic from "@/homecomponents/Stats";
+import ModernSixBoxInfographic from "@/homecomponents/Stats";
+import BentoGridInfographic from "@/homecomponents/Stats2";
 import Testimonial from "@/homecomponents/Testimonial";
 import WorldClassTreatment from "@/homecomponents/WorldClassTreatment";
 import React from "react";
@@ -21,7 +22,8 @@ function page() {
       <Collaborate />
       <AiDriven />
       <WorldClassTreatment />
-      <ProfessionalCircleInfographic />
+      <ModernSixBoxInfographic />
+      <BentoGridInfographic />
       <Nexcura />
       <Testimonial />
       <CallToAction />
